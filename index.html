@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maya Asian Restaurant</title>
+<meta name="description" content="Authentic Nepali & Indian cuisine in Harrisburg, PA. View the menu, order pickup or delivery, and find our hours and location.">
+<link rel="icon" href="images/logo-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-alt:#faf7f2;
+    --fg:#211d19;
+    --fg-dim:#6c6459;
+    --accent:#d8482a;
+    --accent-dark:#b73a21;
+    --accent-ink:#ffffff;
+    --veg:#2f8f4e;
+    --nonveg:#d8482a;
+    --border:#e9e3d8;
+    --shadow:0 1px 2px rgba(33,25,15,.04), 0 10px 24px -8px rgba(33,25,15,.12);
+    --footer-bg:#221d18;
+    --footer-fg:#f2ece2;
+    color-scheme:light;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Plus Jakarta Sans",system-ui,sans-serif;
+    font-weight:700;
+    text-wrap:balance;
+    margin:0;
+    color:var(--fg);
+  }
+  p{margin:0}
+  a{color:inherit}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+
+  .wrap{
+    max-width:1140px;
+    margin-inline:auto;
+    padding-left:max(20px, env(safe-area-inset-left,0px));
+    padding-right:max(20px, env(safe-area-inset-right,0px));
+  }
+
+  /* header */
+  header{
+    position:sticky;
+    top:env(safe-area-inset-top,0px);
+    z-index:20;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding-block:14px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:"Plus Jakarta Sans",sans-serif;
+    font-size:1.15rem;
+    font-weight:800;
+    text-decoration:none;
+    color:var(--fg);
+    white-space:nowrap;
+  }
+  .brand img{flex:0 0 auto;width:36px;height:36px;border-radius:9px;display:block}
+  nav.links{display:flex;gap:2px;flex-wrap:wrap}
+  nav.links a{
+    font-size:.92rem;
+    font-weight:600;
+    text-decoration:none;
+    color:var(--fg-dim);
+    padding:8px 14px;
+    border-radius:999px;
+    transition:background .15s,color .15s;
+  }
+  nav.links a:hover{background:var(--bg-alt);color:var(--fg)}
+  .nav-cta{
+    display:inline-block;
+    font-size:.88rem;
+    font-weight:700;
+    background:var(--accent);
+    color:var(--accent-ink);
+    padding:9px 16px;
+    border-radius:999px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--accent-dark)}
+
+  /* hero */
+  .hero{
+    position:relative;
+    min-height:min(560px,88vh);
+    display:flex;
+    align-items:flex-end;
+    background:#2a1610 url('images/hero-spread.jpg') center/cover no-repeat;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(20,12,8,.35) 0%, rgba(20,12,8,.55) 55%, rgba(16,10,6,.88) 100%);
+  }
+  .hero .wrap{
+    position:relative;
+    padding-block:48px clamp(36px,8vw,64px);
+    width:100%;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#ffd9ca;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    padding:6px 13px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(2.1rem,5.2vw,3.4rem);
+    line-height:1.08;
+    max-width:16ch;
+  }
+  .hero .tagline{
+    margin-top:16px;
+    font-size:clamp(1rem,1.8vw,1.15rem);
+    color:rgba(255,255,255,.88);
+    max-width:54ch;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font:inherit;
+    font-weight:700;
+    font-size:.95rem;
+    padding:13px 24px;
+    border-radius:999px;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--accent);color:var(--accent-ink)}
+  .btn-primary:hover{background:var(--accent-dark)}
+  .btn-outline-light{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.65);color:#fff}
+  .btn-outline-light:hover{background:rgba(255,255,255,.18)}
+  .btn-outline{background:transparent;border-color:var(--border);color:var(--fg)}
+  .btn-outline:hover{background:var(--bg-alt)}
+
+  .hero-facts{
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    margin-top:30px;
+  }
+  .hero-facts .fact{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#fff;
+    font-size:.92rem;
+    font-weight:500;
+  }
+  .hero-facts svg{flex:0 0 auto;opacity:.85}
+
+  /* sections */
+  section{padding-block:clamp(48px,7vw,80px)}
+  section.alt{background:var(--bg-alt)}
+  .section-head{margin-bottom:34px;max-width:70ch}
+  .section-head .eyebrow-sm{
+    display:block;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:8px;
+  }
+  .section-head h2{font-size:clamp(1.6rem,3.2vw,2.1rem)}
+  .section-head .sub{color:var(--fg-dim);margin-top:8px}
+
+  /* about */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:clamp(24px,5vw,48px);
+    align-items:start;
+  }
+  .about-grid p + p{margin-top:14px}
+  .about-grid .lede{font-size:1.08rem}
+  .feature-cards{display:flex;flex-direction:column;gap:14px}
+  .feature-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px 20px;
+    box-shadow:var(--shadow);
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .feature-card .icon{
+    flex:0 0 auto;
+    width:40px;height:40px;
+    border-radius:11px;
+    background:#fdece6;
+    color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .feature-card h3{font-size:1rem;margin-bottom:3px}
+  .feature-card p{font-size:.88rem;color:var(--fg-dim)}
+
+  /* gallery */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(235px,1fr));
+    gap:20px;
+  }
+  .gallery-item{
+    appearance:none;
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:16px;
+    padding:0;
+    overflow:hidden;
+    font:inherit;
+    color:inherit;
+    text-align:left;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .gallery-item:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(33,25,15,.06), 0 18px 32px -10px rgba(33,25,15,.22)}
+  .gallery-item .thumb{overflow:hidden}
+  .gallery-item img{
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    transition:transform .3s ease;
+  }
+  .gallery-item:hover img{transform:scale(1.06)}
+  .gallery-item figcaption{padding:13px 15px 15px}
+  .gallery-item .dish-cap{font-weight:700;font-size:.97rem}
+  .gallery-item .cat-cap{font-size:.8rem;color:var(--fg-dim);margin-top:2px}
+
+  /* menu controls */
+  .menu-controls{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    margin-bottom:30px;
+  }
+  .search-row input[type="search"]{
+    width:100%;
+    font:inherit;
+    font-size:.95rem;
+    padding:13px 18px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:#fff;
+    color:var(--fg);
+    box-shadow:var(--shadow);
+  }
+  .search-row input::placeholder{color:var(--fg-dim)}
+  .chips{display:flex;gap:9px;overflow-x:auto;padding:3px 3px 8px}
+  .chip{
+    flex:0 0 auto;
+    font:inherit;
+    font-size:.86rem;
+    font-weight:600;
+    padding:9px 16px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:#fff;
+    color:var(--fg-dim);
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .15s,color .15s,border-color .15s;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--fg)}
+  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.84rem;color:var(--fg-dim)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto}
+  .dot.veg{background:var(--veg)}
+  .dot.nonveg{background:var(--nonveg)}
+
+  .menu-empty{display:none;padding:40px 0;color:var(--fg-dim);text-align:center}
+
+  .menu-cat{margin-bottom:38px}
+  .menu-cat-title{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+  .menu-cat-title h3{font-size:1.25rem}
+  .menu-cat-title .count{font-size:.82rem;color:var(--fg-dim)}
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+    gap:14px;
+  }
+  .dish{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px 18px;
+    box-shadow:var(--shadow);
+    min-width:0;
+  }
+  .dish-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .dish-name{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.98rem;min-width:0}
+  .dish-name .label{overflow-wrap:break-word}
+  .dish-price{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);white-space:nowrap}
+  .dish-desc{margin-top:7px;font-size:.86rem;color:var(--fg-dim)}
+
+  /* visit */
+  .visit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+  .visit-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px;
+    box-shadow:var(--shadow);
+  }
+  .visit-card h3{font-size:1.05rem;margin-bottom:14px}
+  table.hours{border-collapse:collapse;width:100%;font-size:.93rem}
+  table.hours td{padding:7px 0;border-bottom:1px solid var(--border)}
+  table.hours tr:last-child td{border-bottom:none}
+  table.hours td:first-child{color:var(--fg-dim);width:45%}
+  table.hours tr.today td{color:var(--accent);font-weight:700}
+  .copy-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .copy-btn{
+    font:inherit;
+    font-size:.78rem;
+    font-weight:600;
+    padding:6px 12px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:var(--bg-alt);
+    color:var(--fg-dim);
+    cursor:pointer;
+  }
+  .copy-btn:hover{color:var(--fg);border-color:var(--accent)}
+  address{font-style:normal}
+  .visit-card img{width:100%;border-radius:12px;margin-bottom:16px;display:block}
+
+  footer{background:var(--footer-bg);color:var(--footer-fg);padding-block:36px}
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    font-size:.88rem;
+  }
+  .footer-row strong{font-family:"Plus Jakarta Sans",sans-serif;font-size:1.05rem}
+  .footer-row .muted{opacity:.65;font-size:.82rem}
+  .footer-brand{display:flex;align-items:center;gap:14px}
+  .footer-brand img{width:46px;height:46px;border-radius:10px;flex:0 0 auto}
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr}
+    nav.links{display:none}
+    .hero{min-height:460px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#top">
+      <img src="images/logo-icon.jpg" alt="Maya Asian Restaurant logo">
+      Maya Asian Restaurant
+    </a>
+    <nav class="links" aria-label="Section navigation">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#menu">Menu</a>
+      <a href="#visit">Hours &amp; Location</a>
+    </nav>
+    <a class="nav-cta" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Online</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Harrisburg, Pennsylvania</span>
+      <h1>Authentic Nepali &amp; Indian Cuisine</h1>
+      <p class="tagline">Momo, thukpa and sekuwa from the Nepali side of the kitchen. Tandoor, kebabs and slow-cooked curries from the Indian side. All cooked to order.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="#fff" stroke-width="1.8"/></svg>Order Pickup</a>
+        <a class="btn btn-primary" href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><path d="M3 15h12V8h-3M9 15V8H6L3 12v3h0" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10h4l3 5h-2" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>Order Delivery</a>
+        <a class="btn btn-outline-light" href="#menu">View the Menu</a>
+        <a class="btn btn-outline-light" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="hero-facts">
+        <span class="fact"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.4 7-13a7 7 0 1 0-14 0c0 5.6 7 13 7 13Z" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="#fff" stroke-width="1.8"/></svg>1019 N Mountain Rd, Harrisburg, PA</span>
+        <span class="fact"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5c0 8 7 15 15 15l2-4-5-3-2 2c-2-1-4-3-5-5l2-2-3-5-4 2Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>(717) 395-2942</span>
+        <span class="fact" id="heroStatus"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>Checking hours&hellip;</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow-sm">About Maya</span>
+        <h2>A family-run kitchen</h2>
+        <p class="lede" style="margin-top:14px">Welcome to Maya Asian Restaurant, a small, family-run business serving authentic Nepali and Indian cuisine in Harrisburg, PA.</p>
+        <p>From flavorful momos and delicious curries to freshly prepared traditional favorites, we bring the taste of home to your table. Every dish is made with care, passion, and a love for sharing good food.</p>
+        <p style="font-style:italic;color:var(--fg-dim)">Thank you for supporting our family business!</p>
+      </div>
+      <div class="feature-cards">
+        <div class="feature-card">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 11a8 8 0 0 1 16 0v1H4v-1Z" stroke="currentColor" stroke-width="1.8"/><path d="M3 15h18v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2Z" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <div><h3>Himalayan staples</h3><p>Momo in four styles, thukpa noodle soup, and sekuwa grilled the traditional way.</p></div>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M5 7l2 2M19 7l-2 2M4 13a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3 17h18v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2Z" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <div><h3>Tandoor &amp; curry house</h3><p>Classic kadai, bhuna, korma and vindaloo, plus tandoori meats and fresh naan.</p></div>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <div><h3>Vegetarian-friendly</h3><p>Paneer, dal, aloo and vegetable versions run through nearly every section.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-sm">Gallery</span>
+        <h2>From the kitchen</h2>
+        <p class="sub">A look at what actually lands on the table. Tap a photo to jump to that dish's menu section.</p>
+      </div>
+      <div class="gallery-grid">
+        <button class="gallery-item" type="button" data-cat="Appetizers &amp; Street Food">
+          <div class="thumb"><img src="images/samosa-chaat.jpg" alt="Samosa chaat topped with chutneys, yogurt, pomegranate and sev"></div>
+          <figcaption><div class="dish-cap">Samosa Chaat</div><div class="cat-cap">Appetizers &amp; Street Food</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Authentic Nepali Taste">
+          <div class="thumb"><img src="images/sukuti-sadheko.jpg" alt="Sukuti sadheko, dried meat tossed with tomato, onion and herbs, plated with cucumber, radish and carrot"></div>
+          <figcaption><div class="dish-cap">Sukuti Sadheko</div><div class="cat-cap">Authentic Nepali Taste</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Momo">
+          <div class="thumb"><img src="images/momo-fried.jpg" alt="A plate of golden fried momo dumplings around a bowl of mustard-yellow dipping sauce"></div>
+          <figcaption><div class="dish-cap">Momo, Fried</div><div class="cat-cap">Momo</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Thukpa">
+          <div class="thumb"><img src="images/thukpa.jpg" alt="A bowl of thukpa noodle soup in a golden turmeric broth, topped with fresh cilantro"></div>
+          <figcaption><div class="dish-cap">Thukpa</div><div class="cat-cap">Himalayan noodle soup</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Sekuwa">
+          <div class="thumb"><img src="images/sekuwa.jpg" alt="Grilled sekuwa skewer meat plated with cucumber, carrot and radish" style="object-position:50% 70%"></div>
+          <figcaption><div class="dish-cap">Sekuwa</div><div class="cat-cap">Grilled Nepali skewers</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Chowmein">
+          <div class="thumb"><img src="images/chowmein.jpg" alt="A plate of stir-fried chowmein noodles with vegetables and cilantro"></div>
+          <figcaption><div class="dish-cap">Chowmein</div><div class="cat-cap">Indo-Chinese noodles</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Classic Curries">
+          <div class="thumb"><img src="images/butter-chicken.jpg" alt="A bowl of creamy orange butter chicken curry swirled with cream"></div>
+          <figcaption><div class="dish-cap">Butter Chicken</div><div class="cat-cap">Classic Curries</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Wrap">
+          <div class="thumb"><img src="images/chicken-tikka-wrap.jpg" alt="A chicken tikka wrap sliced in half, served with waffle fries"></div>
+          <figcaption><div class="dish-cap">Chicken Tikka Wrap</div><div class="cat-cap">Wrap</div></figcaption>
+        </button>
+        <button class="gallery-item" type="button" data-cat="Naan &amp; Breads">
+          <div class="thumb"><img src="images/garlic-naan.jpg" alt="Triangles of garlic butter naan topped with cilantro"></div>
+          <figcaption><div class="dish-cap">Garlic Butter Naan</div><div class="cat-cap">Naan &amp; Breads</div></figcaption>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Menu</h2>
+        <p class="sub">From street-food appetizers to slow-cooked curries. Filter by section or search for a dish.</p>
+      </div>
+
+      <div class="menu-controls">
+        <div class="search-row">
+          <input type="search" id="menuSearch" placeholder="Search the menu &mdash; try &ldquo;momo&rdquo; or &ldquo;paneer&rdquo;" aria-label="Search the menu">
+        </div>
+        <div class="chips" id="chipRow" role="tablist" aria-label="Menu sections"></div>
+        <div class="legend">
+          <span><i class="dot veg" aria-hidden="true"></i> Vegetarian</span>
+          <span><i class="dot nonveg" aria-hidden="true"></i> Contains meat or seafood</span>
+        </div>
+      </div>
+
+      <div id="menuList"></div>
+      <p class="menu-empty" id="menuEmpty">No dishes match that search.</p>
+    </div>
+  </section>
+
+  <section id="visit" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-sm">Visit</span>
+        <h2>Hours &amp; location</h2>
+        <p class="sub">Open six days a week in Harrisburg. Closed Mondays.</p>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-card">
+          <h3>Hours</h3>
+          <table class="hours" id="hoursTable">
+            <tbody>
+              <tr data-day="0"><td>Sunday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+              <tr data-day="1"><td>Monday</td><td>Closed</td></tr>
+              <tr data-day="2"><td>Tuesday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+              <tr data-day="3"><td>Wednesday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+              <tr data-day="4"><td>Thursday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+              <tr data-day="5"><td>Friday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+              <tr data-day="6"><td>Saturday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+            </tbody>
+          </table>
+          <p class="sub" style="margin-top:10px;font-size:.78rem">All times Eastern.</p>
+        </div>
+        <div class="visit-card">
+          <h3>Find us</h3>
+          <img src="images/storefront.jpg" alt="Maya Asian Restaurant storefront in a Harrisburg strip plaza, with neon OPEN signs in the windows">
+          <address>1019 North Mountain Road<br>Harrisburg, PA 17112</address>
+          <div class="copy-row">
+            <button class="copy-btn" data-copy="1019 North Mountain Road, Harrisburg, PA 17112">Copy address</button>
+          </div>
+          <div style="margin-top:18px">
+            <div style="font-weight:700">(717) 395-2942</div>
+            <div class="copy-row">
+              <button class="copy-btn" data-copy="+17173952942">Copy phone number</button>
+            </div>
+          </div>
+          <div class="hero-actions" style="margin-top:22px">
+            <a class="btn btn-outline" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Pickup</a>
+            <a class="btn btn-outline" href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener">Order Delivery</a>
+            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-brand">
+      <img src="images/logo-icon.jpg" alt="Maya Asian Restaurant logo">
+      <div><strong>Maya Asian Restaurant</strong><br><span class="muted">1019 North Mountain Road, Harrisburg, PA 17112 &middot; (717) 395-2942</span></div>
+    </div>
+    <span class="muted">A small, family-run business &mdash; thank you for your support</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var MENU = [
+    ["Appetizers & Street Food", [
+      ["Samosa (2Pcs)", 5.99, "Crispy, golden-fried pastries filled with seasoned potatoes, peas, and aromatic Indian spices. Served with tamarind and mint sauces."],
+      ["Samosa Chaat", 9.99, "Crispy samosas topped with chickpea curry, creamy yogurt, tangy chutneys, and aromatic Indian spices."],
+      ["Fish Pakoda (Tilapia)", 9.99, "Tender tilapia pieces coated in a seasoned chickpea flour batter and deep-fried until golden and crispy. Served with flavorful dipping sauce."],
+      ["Vegetable Pakoda", 7.99, "Fresh mixed vegetables coated in a seasoned chickpea flour batter and deep-fried until golden and crispy. Served with dipping sauce."],
+      ["French Fries", 5.99, ""],
+      ["Chicken Pakoda", 8.99, "Tender pieces of chicken coated in a seasoned batter and deep-fried until golden and crispy."]
+    ]],
+    ["Soups", [
+      ["Chicken Soup", 7.99, ""],
+      ["Mulligatawny Soup", 6.99, "A warm, flavorful Indian-style soup made with lentils, vegetables, and aromatic spices."],
+      ["Tomato Mushroom Soup", 6.99, ""],
+      ["Vegetable Soup", 6.99, ""]
+    ]],
+    ["Momo", [
+      ["Chicken Momo Chili", 13.99, "Crispy fried chicken dumplings tossed in a spicy Indo-Chinese chili sauce with onions, bell peppers, and aromatic spices."],
+      ["Chicken Momo Fried", 11.99, "Crispy golden-fried dumplings filled with juicy, seasoned chicken and aromatic Nepali spices. Served with flavorful special dipping sauce."],
+      ["Chicken Momo Jhol", 12.99, "Soft, steamed dumplings filled with juicy, seasoned chicken and aromatic Nepali spices, served in a flavorful, tangy, and spicy Nepali-style hot broth."],
+      ["Chicken Momo Steamed", 11.99, "Soft, steamed dumplings filled with juicy, seasoned chicken and aromatic Nepali spices. Served with flavorful dipping sauce."],
+      ["Pork Momo Chili", 13.99, "Crispy fried pork dumplings tossed in a spicy Indo-Chinese chili sauce with onions, bell peppers, and aromatic spices."],
+      ["Pork Momo Fried", 11.99, "Crispy golden-fried dumplings filled with juicy, seasoned pork and aromatic Nepali spices. Served with flavorful dipping sauce."],
+      ["Pork Momo Jhol", 12.99, "Steamed dumplings filled with juicy, seasoned pork, served in a tangy, spicy Nepali-style hot broth."],
+      ["Pork Momo Steamed", 11.99, "Soft, steamed dumplings filled with juicy, seasoned pork and aromatic Nepali spices. Served with flavorful dipping sauce."],
+      ["Vegetable Momo Chili", 12.99, "Crispy fried vegetable dumplings tossed in a spicy Indo-Chinese chili sauce with onions, bell peppers, and aromatic spices."],
+      ["Vegetable Momo Fried", 10.99, "Crispy golden-fried dumplings filled with fresh vegetables and aromatic Nepali spices. Served with flavorful dipping sauce."],
+      ["Vegetable Momo Jhol", 11.99, "Steamed dumplings filled with seasoned vegetables, served in a tangy, spicy Nepali-style hot broth."],
+      ["Vegetable Momo Steamed", 10.99, "Soft, steamed dumplings filled with fresh vegetables and aromatic Nepali spices. Served with flavorful dipping sauce."]
+    ]],
+    ["Chowmein", [
+      ["Chicken Chowmein", 11.99, "Stir-fried noodles tossed with tender chicken, fresh vegetables, and flavorful Nepalese spices."],
+      ["Egg Chowmein", 11.49, "Stir-fried noodles tossed with scrambled eggs, fresh vegetables, and flavorful Indo-Chinese sauces and spices."],
+      ["Lamb Chowmein", 13.99, "Stir-fried noodles tossed with tender lamb, fresh vegetables, and flavorful Indo-Chinese sauces and spices."],
+      ["Mixed Chowmein", 14.99, "Stir-fried noodles tossed with a delicious mix of meats, fresh vegetables, and flavorful Indo-Chinese sauces."],
+      ["Pork Chowmein", 11.99, "Stir-fried noodles tossed with tender pork, fresh vegetables, and flavorful Indo-Chinese sauces and spices."],
+      ["Shrimp Chowmein", 13.99, "Stir-fried noodles tossed with tender shrimp, fresh vegetables, and flavorful Indo-Chinese sauces and spices."],
+      ["Vegetable Chowmein", 10.99, "Stir-fried noodles tossed with fresh mixed vegetables and flavorful Indo-Chinese sauces and spices."]
+    ]],
+    ["Thukpa", [
+      ["Chicken Thukpa", 12.99, "Traditional Nepali noodle soup with tender chicken, fresh vegetables, and aromatic Himalayan spices simmered in a warm, flavorful broth."],
+      ["Egg Thukpa", 12.49, "Traditional Nepali noodle soup with eggs, fresh vegetables, and aromatic Himalayan spices simmered in a warm, flavorful broth."],
+      ["Lamb Thukpa", 13.99, "Traditional Nepali noodle soup with tender lamb, fresh vegetables, and aromatic Himalayan spices in a flavorful broth."],
+      ["Mixed Thukpa", 14.99, "Traditional Nepali noodle soup with a flavorful mix of meats, fresh vegetables, and aromatic Himalayan spices in a savory broth."],
+      ["Pork Thukpa", 12.99, "Traditional Nepali noodle soup with tender pork, fresh vegetables, and aromatic Himalayan spices in a flavorful broth."],
+      ["Shrimp Thukpa", 13.99, "Traditional Nepali noodle soup with tender shrimp, fresh vegetables, and aromatic Himalayan spices in a flavorful broth."],
+      ["Vegetable Thukpa", 11.99, "A comforting Himalayan-style noodle soup made with fresh vegetables, tender noodles, and a flavorful broth infused with aromatic herbs and spices."]
+    ]],
+    ["Sekuwa", [
+      ["Chicken Sekuwa", 13.99, "Tender chicken marinated in traditional Nepali spices and grilled to perfection for a smoky, juicy, and flavorful taste."],
+      ["Mutton/Goat Sekuwa", 16.99, "Tender goat meat marinated in traditional Nepali spices and grilled to perfection for a smoky, juicy flavor."],
+      ["Pork Sekuwa", 14.99, "Tender pork marinated in traditional Nepali spices and grilled to perfection for a smoky, juicy flavor."]
+    ]],
+    ["Kebab & Tandoor", [
+      ["Chicken Kebab", 14.99, "Tender chicken marinated in yogurt and aromatic Indian spices, then grilled in a traditional tandoor oven for a smoky, juicy, and flavorful taste."],
+      ["Lamb Kebab", 16.99, "Tender lamb marinated in aromatic Indian spices and grilled in a traditional tandoor for a smoky, juicy flavor."],
+      ["Malai Chicken Kebab", 16.99, "Tender chicken marinated in a creamy blend of yogurt, cream, and mild Indian spices, then grilled to perfection in a tandoor."],
+      ["Shrimp Kebab", 18.99, "Juicy shrimp marinated in aromatic Indian spices and grilled in a traditional tandoor for a smoky, flavorful taste."],
+      ["Mixed Grill", 23.99, "A flavorful assortment of marinated meats grilled in a traditional tandoor for a smoky, juicy taste."],
+      ["Lamb Chops (5Pcs)", 24.99, "Juicy, tender lamb chops marinated in yogurt and aromatic Indian spices, then grilled to perfection in a traditional tandoor oven for a smoky, flavorful taste."],
+      ["Tandoori Classic Salmon", 20.99, "Tender salmon marinated in yogurt and aromatic Indian spices, then roasted in a traditional tandoor for a smoky, flavorful taste."],
+      ["Tandoori Classic Chicken", 16.99, "Tender chicken marinated in yogurt and aromatic Indian spices, then roasted in a traditional tandoor for a smoky, juicy flavor."]
+    ]],
+    ["Authentic Nepali Taste", [
+      ["Chicken Sadheko", 16.99, "Tender chicken tossed with onions, tomatoes, green chilies, fresh cilantro, lemon juice, and aromatic Nepali spices for a tangy, spicy, and flavorful dish."],
+      ["Sukuti Sadheko", 12.99, "Traditional Nepali dried meat tossed with onions, green chilies, fresh cilantro, lemon juice, and aromatic Nepali spices for a spicy, tangy flavor."],
+      ["Sukuti", 12.99, "Traditional Nepali dried meat seasoned with aromatic spices and cooked for a smoky, savory, and flavorful taste."]
+    ]],
+    ["Wrap", [
+      ["Butter Chicken Wrap", 12.99, "Tender chicken tossed in a rich, creamy butter chicken sauce, wrapped in soft naan bread with fresh vegetables and flavorful spices. Comes with a side of fries."],
+      ["Chicken Tikka Wrap", 12.99, "Tender, marinated chicken tikka grilled with aromatic Indian spices, wrapped in soft naan bread with fresh vegetables and flavorful sauce."],
+      ["Paneer Tikka Wrap", 11.99, "Marinated paneer cubes grilled with aromatic Indian spices, wrapped in soft flatbread with fresh vegetables and flavorful sauce."]
+    ]],
+    ["Fried Rice", [
+      ["Chicken Fried Rice", 11.99, "Fragrant rice stir-fried with tender chicken, fresh vegetables, and flavorful Indo-Chinese seasonings."],
+      ["Egg Fried Rice", 11.49, "Fragrant rice stir-fried with scrambled eggs, fresh vegetables, and flavorful Indo-Chinese seasonings."],
+      ["Lamb Fried Rice", 13.99, "Fragrant rice stir-fried with tender lamb, fresh vegetables, and flavorful Indo-Chinese seasonings."],
+      ["Mixed Fried Rice", 14.99, "Fragrant rice stir-fried with a delicious mix of meats, fresh vegetables, and flavorful Indo-Chinese seasonings."],
+      ["Pork Fried Rice", 11.99, "Fragrant rice stir-fried with tender pork, fresh vegetables, and flavorful Indo-Chinese seasonings."],
+      ["Shrimp Fried Rice", 13.99, "Delicious stir-fried rice tossed with tender, juicy shrimp, fresh mixed vegetables, eggs, and savory seasonings."],
+      ["Vegetable Fried Rice", 10.99, "Fragrant rice stir-fried with fresh mixed vegetables and flavorful Indo-Chinese seasonings."]
+    ]],
+    ["Biryani", [
+      ["Chicken Biryani", 14.99, "Fragrant basmati rice cooked with tender chicken, aromatic Indian spices, and herbs for a rich, flavorful dish. Served with raita."],
+      ["Lamb Biryani", 16.99, "Tender pieces of lamb cooked with fragrant basmati rice, aromatic herbs, and traditional Indian spices. Served with raita."],
+      ["Mixed Biryani", 18.99, "Fragrant basmati rice cooked with a delicious mix of meats, aromatic Indian spices, and herbs for a rich, flavorful dish."],
+      ["Mutton/Goat Biryani", 16.99, "Fragrant basmati rice cooked with tender goat meat, aromatic Indian spices, and herbs for a rich, flavorful dish."],
+      ["Shrimp Biryani", 17.99, "Fragrant basmati rice cooked with tender shrimp, aromatic Indian spices, and herbs for a rich, flavorful dish."],
+      ["Vegetable Biryani", 13.99, "Fragrant basmati rice cooked with fresh mixed vegetables, aromatic Indian spices, and herbs for a rich, flavorful dish."]
+    ]],
+    ["Naan & Breads", [
+      ["Aloo Naan", 4.49, "Soft, freshly baked naan stuffed with seasoned mashed potatoes and aromatic Indian spices."],
+      ["Bullet Naan", 4.49, "Soft, freshly baked naan topped with spicy green chilies, garlic, and fresh cilantro for a bold, flavorful kick."],
+      ["Butter Naan", 3.99, "Soft, fluffy naan freshly baked in a traditional tandoor oven and brushed with melted butter."],
+      ["Garlic Butter Naan", 3.49, "Soft naan freshly baked in a traditional tandoor oven and topped with minced garlic, fresh cilantro, and melted butter."],
+      ["Plain Naan", 3.49, "Soft Indian flatbread freshly baked in a traditional tandoor oven."],
+      ["Paneer Kulcha", 4.49, "Soft Indian flatbread stuffed with seasoned paneer, fresh herbs, and aromatic spices, baked in a traditional tandoor."],
+      ["Onion Kulcha", 4.49, "Soft, fluffy Indian flatbread stuffed with seasoned onions, fresh herbs, and aromatic spices, baked in a traditional tandoor."]
+    ]],
+    ["Fry & Chili Specialties", [
+      ["Chicken Chili", 13.99, "Crispy fried chicken tossed in a flavorful Indo-Chinese chili sauce with onions, bell peppers, garlic, and aromatic spices."],
+      ["Fish Chili", 15.99, "Crispy fried fish (tilapia) tossed in a spicy Indo-Chinese chili sauce with onions, bell peppers, garlic, and aromatic spices."],
+      ["Paneer Chili", 13.99, "Crispy paneer cubes tossed in a spicy Indo-Chinese chili sauce with onions, bell peppers, garlic, and aromatic spices."],
+      ["Mango Chicken", 13.99, "Tender chicken cooked in a rich, creamy mango sauce with aromatic Indian spices for a sweet and savory flavor. Served with rice."],
+      ["Gobi Manchurian", 12.99, "Crispy fried cauliflower florets tossed in a flavorful Indo-Chinese sauce with garlic, ginger, onions, bell peppers, and aromatic spices."],
+      ["Fish Fry", 14.99, ""],
+      ["Aloo Chili", 10.99, "Crispy fried potatoes tossed in a flavorful Indo-Chinese chili sauce with onions, bell peppers, and aromatic spices."],
+      ["Aloo Fry", 8.99, "Golden-fried potatoes seasoned with aromatic spices for a crispy, flavorful bite."]
+    ]],
+    ["Classic Curries", [
+      ["Chicken Tikka Masala", 14.99, "Tender, marinated chicken pieces cooked in a rich, creamy tomato-based curry sauce, infused with aromatic Indian spices. Served with basmati rice."],
+      ["Paneer Tikka Masala", 14.99, "Grilled paneer cubes simmered in a rich, creamy tomato-based sauce with aromatic Indian spices. Served with rice."],
+      ["Vegetable Tikka Masala", 13.99, "A delicious medley of fresh vegetables simmered in a rich, creamy tomato-based sauce, infused with aromatic Indian spices. Served with rice."],
+      ["Butter Chicken", 14.99, "Tender chicken cooked in a rich, creamy tomato-based sauce with butter and aromatic Indian spices. Served with rice."],
+      ["Chicken Curry", 15.99, "Tender chicken simmered in a rich, flavorful curry sauce with onions, tomatoes, and aromatic Indian spices. Served with rice."],
+      ["Lamb Curry", 16.99, "Tender lamb simmered in a rich, flavorful curry sauce with tomatoes, onions, and aromatic Indian spices. Served with rice."],
+      ["Mutton/Goat Curry", 17.99, "Tender goat meat slow-cooked in a rich, flavorful curry with onions, tomatoes, and aromatic Nepali spices. Served with rice."],
+      ["Vegetable Curry", 13.99, "Fresh mixed vegetables simmered in a rich, flavorful curry sauce with aromatic Indian spices. Served with rice."],
+      ["Aloo Gobi", 12.99, "Tender potatoes and cauliflower cooked with aromatic Indian spices and herbs. Served with rice."],
+      ["Dal Tadka", 12.99, "Yellow lentils simmered with aromatic Indian spices and tempered with butter, cumin, garlic, and dried red chilies. Served with rice."],
+      ["Plain Basmati Rice", 2.99, ""]
+    ]],
+    ["Vindaloo", [
+      ["Chicken Vindaloo", 15.99, "Tender chicken cooked in a bold, spicy, and tangy Goan-style curry with vinegar, garlic, and aromatic Indian spices. Served with rice."],
+      ["Goat Vindaloo", 17.99, "Tender goat meat slow-cooked in a bold, spicy, and tangy Goan-style curry with vinegar, garlic, and aromatic Indian spices. Served with rice."],
+      ["Shrimp Vindaloo", 17.99, "Tender shrimp cooked in a bold, spicy, and tangy Goan-style curry with garlic and aromatic Indian spices. Served with rice."],
+      ["Vegetable Vindaloo", 13.99, "A flavorful medley of fresh vegetables cooked in a bold, spicy, and tangy tomato-based curry sauce, infused with aromatic Indian spices. Served with rice."],
+      ["Lamb Vindaloo", 17.99, "Tender lamb cooked in a bold, spicy, and tangy Goan-style curry with garlic and aromatic Indian spices. Served with rice."]
+    ]],
+    ["Kadai", [
+      ["Chicken Kadai", 15.99, "Tender chicken cooked with onions, bell peppers, tomatoes, and aromatic Indian spices in a rich, flavorful gravy. Served with rice."],
+      ["Goat Kadai", 17.99, "Tender goat meat cooked with onions, bell peppers, tomatoes, and aromatic Indian spices in a rich, flavorful gravy. Served with rice."],
+      ["Lamb Kadai", 17.99, "Tender lamb cooked with onions, bell peppers, tomatoes, and aromatic Indian spices in a rich gravy. Served with rice."],
+      ["Shrimp Kadai", 17.99, "Tender, juicy shrimp cooked with fresh bell peppers, onions, tomatoes, and aromatic Indian spices in a rich, flavorful kadai-style curry sauce. Served with rice."],
+      ["Vegetable Kadai", 13.99, "Fresh mixed vegetables cooked with onions, bell peppers, tomatoes, and aromatic Indian spices in a rich gravy. Served with rice."]
+    ]],
+    ["Bhuna", [
+      ["Chicken Bhuna", 15.99, "Tender chicken cooked in a thick, flavorful sauce with onions, tomatoes, and aromatic Indian spices. Served with rice."],
+      ["Goat Bhuna", 17.99, "Tender goat meat slow-cooked in a thick, flavorful sauce with onions, tomatoes, and aromatic Indian spices. Served with rice."],
+      ["Lamb Bhuna", 17.99, "Tender lamb slow-cooked in a thick, flavorful sauce with onions, tomatoes, and aromatic Indian spices. Served with rice."],
+      ["Shrimp Bhuna", 17.99, "Tender shrimp cooked in a thick, flavorful sauce with onions, tomatoes, and aromatic Indian spices. Served with rice."],
+      ["Vegetable Bhuna", 13.99, "Fresh mixed vegetables cooked in a thick, flavorful sauce with onions, tomatoes, and aromatic Indian spices. Served with rice."]
+    ]],
+    ["Kofta", [
+      ["Malai Kofta", 14.99, "Soft vegetable and paneer dumplings simmered in a rich, creamy cashew-based curry with aromatic Indian spices. Served with rice."]
+    ]],
+    ["Shahi Korma", [
+      ["Chicken Shahi Korma", 15.99, "Tender chicken simmered in a rich, creamy sauce with cashews, aromatic Indian spices, and a touch of sweetness. Served with rice."],
+      ["Goat Shahi Korma", 17.99, "Tender goat meat slow-cooked in a rich, creamy sauce with cashews, aromatic Indian spices, and a touch of sweetness. Served with rice."],
+      ["Lamb Shahi Korma", 16.99, "Tender lamb simmered in a rich, creamy cashew-based sauce with aromatic Indian spices. Served with rice."],
+      ["Paneer Shahi Korma", 14.99, "Soft paneer cubes simmered in a rich, creamy cashew-based sauce with aromatic Indian spices. Served with rice."],
+      ["Shrimp Shahi Korma", 17.99, "Tender, juicy shrimp simmered in a rich, creamy, and mildly spiced royal-style curry sauce, infused with aromatic Indian spices, nuts, and a touch of sweetness. Served with rice."],
+      ["Vegetable Shahi Korma", 13.99, "Fresh mixed vegetables simmered in a rich, creamy cashew-based sauce with aromatic Indian spices. Served with rice."]
+    ]],
+    ["Beverages", [
+      ["Mango Lassi", 4.99, "A refreshing, creamy yogurt drink blended with sweet mango pulp for a smooth, tropical flavor."],
+      ["Plain Lassi", 4.49, "A refreshing, creamy traditional yogurt drink blended until smooth for a rich, cooling taste."],
+      ["Soda/Canned", 2.99, ""]
+    ]]
+  ];
+
+  var NONVEG_WORDS = ["chicken","lamb","pork","goat","mutton","shrimp","fish","tilapia","salmon","egg","sukuti","meat","mixed"];
+  function isVeg(name){
+    var n = name.toLowerCase();
+    for (var i=0;i<NONVEG_WORDS.length;i++){
+      if (n.indexOf(NONVEG_WORDS[i]) !== -1) return false;
+    }
+    return true;
+  }
+  function slug(s){
+    return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+  }
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  var menuListEl = document.getElementById("menuList");
+  var chipRowEl = document.getElementById("chipRow");
+  var searchEl = document.getElementById("menuSearch");
+  var emptyEl = document.getElementById("menuEmpty");
+  var activeCat = "all";
+
+  var allChip = document.createElement("button");
+  allChip.className = "chip";
+  allChip.type = "button";
+  allChip.textContent = "All";
+  allChip.setAttribute("aria-pressed","true");
+  allChip.addEventListener("click", function(){ setActive("all"); });
+  chipRowEl.appendChild(allChip);
+
+  MENU.forEach(function(cat){
+    var chip = document.createElement("button");
+    chip.className = "chip";
+    chip.type = "button";
+    chip.textContent = cat[0];
+    chip.setAttribute("aria-pressed","false");
+    chip.addEventListener("click", function(){ setActive(cat[0]); });
+    chip.dataset.cat = cat[0];
+    chipRowEl.appendChild(chip);
+  });
+
+  function setActive(cat){
+    activeCat = cat;
+    Array.prototype.forEach.call(chipRowEl.children, function(c){
+      var isAll = c === allChip;
+      var match = isAll ? cat === "all" : c.dataset.cat === cat;
+      c.setAttribute("aria-pressed", match ? "true" : "false");
+    });
+    render();
+  }
+
+  function render(){
+    var q = searchEl.value.trim().toLowerCase();
+    var html = "";
+    var totalShown = 0;
+
+    MENU.forEach(function(cat){
+      var catName = cat[0];
+      if (activeCat !== "all" && activeCat !== catName) return;
+
+      var items = cat[1].filter(function(item){
+        if (!q) return true;
+        return item[0].toLowerCase().indexOf(q) !== -1 || (item[2] && item[2].toLowerCase().indexOf(q) !== -1);
+      });
+      if (items.length === 0) return;
+
+      totalShown += items.length;
+      html += '<div class="menu-cat" id="cat-' + slug(catName) + '">';
+      html += '<div class="menu-cat-title"><h3>' + esc(catName) + '</h3><span class="count">' + items.length + (items.length === 1 ? " dish" : " dishes") + '</span></div>';
+      html += '<div class="menu-grid">';
+      items.forEach(function(item){
+        var name = item[0], price = item[1], desc = item[2];
+        var veg = isVeg(name);
+        html += '<div class="dish">';
+        html += '<div class="dish-top"><span class="dish-name"><i class="dot ' + (veg ? "veg" : "nonveg") + '" title="' + (veg ? "Vegetarian" : "Contains meat or seafood") + '"></i><span class="label">' + esc(name) + '</span></span>';
+        html += '<span class="dish-price">$' + price.toFixed(2) + '</span></div>';
+        if (desc) html += '<p class="dish-desc">' + esc(desc) + '</p>';
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+
+    menuListEl.innerHTML = html;
+    emptyEl.style.display = totalShown === 0 ? "block" : "none";
+  }
+
+  searchEl.addEventListener("input", function(){
+    if (searchEl.value.trim() && activeCat !== "all") setActive("all");
+    else render();
+  });
+
+  render();
+
+  // open-now status, using the restaurant's own timezone
+  function updateStatus(){
+    var heroStatus = document.getElementById("heroStatus");
+    var hoursTable = document.getElementById("hoursTable");
+    try {
+      var now = new Date(new Date().toLocaleString("en-US", {timeZone:"America/New_York"}));
+      var day = now.getDay();
+      var hour = now.getHours() + now.getMinutes()/60;
+      var closedToday = (day === 1);
+      var openNow = !closedToday && hour >= 11 && hour < 21;
+
+      var icon = heroStatus.querySelector("svg").outerHTML;
+      heroStatus.innerHTML = icon + (closedToday ? "Closed today · opens tomorrow 11 AM" : (openNow ? "Open now · until 9 PM" : "Closed now · opens 11 AM"));
+
+      var rows = hoursTable.querySelectorAll("tr");
+      rows.forEach(function(r){
+        r.classList.toggle("today", parseInt(r.dataset.day,10) === day);
+      });
+    } catch (e) {
+      heroStatus.textContent = "See hours below";
+    }
+  }
+  updateStatus();
+
+  // copy buttons
+  Array.prototype.forEach.call(document.querySelectorAll(".copy-btn"), function(btn){
+    btn.addEventListener("click", function(){
+      var val = btn.dataset.copy;
+      var done = function(){
+        var old = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(function(){ btn.textContent = old; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val).then(done, function(){
+          fallbackCopy(val); done();
+        });
+      } else {
+        fallbackCopy(val); done();
+      }
+    });
+  });
+  function fallbackCopy(val){
+    var ta = document.createElement("textarea");
+    ta.value = val;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // gallery: jump to a dish's menu section
+  Array.prototype.forEach.call(document.querySelectorAll(".gallery-item"), function(btn){
+    btn.addEventListener("click", function(){
+      searchEl.value = "";
+      setActive(btn.dataset.cat);
+      var target = document.getElementById("menu");
+      if (target) target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+    });
+  });
+
+  // smooth in-page scroll
+  Array.prototype.forEach.call(document.querySelectorAll('a[href^="#"]'), function(a){
+    a.addEventListener("click", function(e){
+      var id = a.getAttribute("href").slice(1);
+      var target = document.getElementById(id);
+      if (target){
+        e.preventDefault();
+        target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
