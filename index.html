@@ -8,22 +8,24 @@
 <link rel="icon" href="images/logo-icon.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#ffffff;
-    --bg-alt:#faf7f2;
-    --fg:#211d19;
-    --fg-dim:#6c6459;
+    --bg-alt:#f7ecd8;
+    --dark:#18120d;
+    --dark-2:#0f0b08;
+    --fg:#241b14;
+    --fg-dim:#7a6a56;
+    --on-dark:#f6ede0;
+    --on-dark-dim:rgba(246,237,224,.72);
     --accent:#d8482a;
     --accent-dark:#b73a21;
     --accent-ink:#ffffff;
     --veg:#2f8f4e;
-    --nonveg:#d8482a;
-    --border:#e9e3d8;
-    --shadow:0 1px 2px rgba(33,25,15,.04), 0 10px 24px -8px rgba(33,25,15,.12);
-    --footer-bg:#221d18;
-    --footer-fg:#f2ece2;
+    --nonveg:#9a7b4f;
+    --border:#e9dec6;
+    --shadow:0 1px 2px rgba(33,20,10,.05), 0 14px 28px -10px rgba(33,20,10,.16);
     color-scheme:light;
   }
 
@@ -37,33 +39,52 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{
-    font-family:"Plus Jakarta Sans",system-ui,sans-serif;
-    font-weight:700;
+  h1,h2{
+    font-family:"Fraunces",Georgia,serif;
+    font-weight:600;
     text-wrap:balance;
     margin:0;
     color:var(--fg);
+    letter-spacing:-.01em;
   }
+  h3{font-family:"Inter",system-ui,sans-serif;font-weight:700;margin:0;color:var(--fg)}
   p{margin:0}
   a{color:inherit}
   img{max-width:100%}
   [hidden]{display:none!important}
+  details > summary{list-style:none}
+  details > summary::-webkit-details-marker{display:none}
 
   .wrap{
-    max-width:1140px;
+    max-width:1160px;
     margin-inline:auto;
     padding-left:max(20px, env(safe-area-inset-left,0px));
     padding-right:max(20px, env(safe-area-inset-right,0px));
   }
 
+  /* eyebrow */
+  .eyebrow-sm{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .eyebrow-sm::before{content:"";display:inline-block;width:20px;height:2px;background:var(--accent)}
+  .eyebrow-sm.on-dark{color:#ffb599}
+  .eyebrow-sm.on-dark::before{background:#ffb599}
+
   /* header */
   header{
     position:sticky;
     top:env(safe-area-inset-top,0px);
-    z-index:20;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--border);
+    z-index:30;
+    background:var(--dark);
+    border-bottom:1px solid rgba(255,255,255,.08);
   }
   .nav-row{
     display:flex;
@@ -76,32 +97,32 @@
     display:flex;
     align-items:center;
     gap:10px;
-    font-family:"Plus Jakarta Sans",sans-serif;
-    font-size:1.15rem;
-    font-weight:800;
+    font-family:"Fraunces",serif;
+    font-size:1.25rem;
+    font-weight:700;
     text-decoration:none;
-    color:var(--fg);
+    color:var(--on-dark);
     white-space:nowrap;
   }
   .brand img{flex:0 0 auto;width:36px;height:36px;border-radius:9px;display:block}
   nav.links{display:flex;gap:2px;flex-wrap:wrap}
   nav.links a{
-    font-size:.92rem;
+    font-size:.88rem;
     font-weight:600;
     text-decoration:none;
-    color:var(--fg-dim);
+    color:var(--on-dark-dim);
     padding:8px 14px;
     border-radius:999px;
     transition:background .15s,color .15s;
   }
-  nav.links a:hover{background:var(--bg-alt);color:var(--fg)}
+  nav.links a:hover{background:rgba(255,255,255,.08);color:var(--on-dark)}
   .nav-cta{
     display:inline-block;
-    font-size:.88rem;
+    font-size:.86rem;
     font-weight:700;
     background:var(--accent);
     color:var(--accent-ink);
-    padding:9px 16px;
+    padding:10px 18px;
     border-radius:999px;
     text-decoration:none;
     white-space:nowrap;
@@ -111,7 +132,7 @@
   /* hero */
   .hero{
     position:relative;
-    min-height:min(560px,88vh);
+    min-height:min(620px,92vh);
     display:flex;
     align-items:flex-end;
     background:#2a1610 url('images/hero-spread.jpg') center/cover no-repeat;
@@ -120,46 +141,48 @@
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(180deg, rgba(20,12,8,.35) 0%, rgba(20,12,8,.55) 55%, rgba(16,10,6,.88) 100%);
+    background:linear-gradient(180deg, rgba(12,8,5,.45) 0%, rgba(12,8,5,.62) 45%, rgba(10,6,4,.94) 100%);
   }
   .hero .wrap{
     position:relative;
-    padding-block:48px clamp(36px,8vw,64px);
+    padding-block:48px clamp(36px,8vw,68px);
     width:100%;
   }
-  .eyebrow{
+  .pill-tag{
     display:inline-block;
     font-size:.78rem;
     font-weight:700;
     letter-spacing:.08em;
     text-transform:uppercase;
     color:#ffd9ca;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.25);
-    padding:6px 13px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.28);
+    padding:6px 14px;
     border-radius:999px;
-    margin-bottom:18px;
+    margin-bottom:20px;
   }
   .hero h1{
     color:#fff;
-    font-size:clamp(2.1rem,5.2vw,3.4rem);
+    font-size:clamp(2.3rem,5.6vw,3.8rem);
     line-height:1.08;
-    max-width:16ch;
+    max-width:17ch;
   }
+  .hero h1 .accent-text{color:#ff8a5c;font-style:italic}
   .hero .tagline{
-    margin-top:16px;
-    font-size:clamp(1rem,1.8vw,1.15rem);
-    color:rgba(255,255,255,.88);
+    margin-top:18px;
+    font-size:clamp(1rem,1.8vw,1.18rem);
+    color:rgba(255,255,255,.86);
     max-width:54ch;
   }
   .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .hero-actions.secondary{margin-top:12px}
   .btn{
     display:inline-flex;
     align-items:center;
     gap:8px;
     font:inherit;
     font-weight:700;
-    font-size:.95rem;
+    font-size:.94rem;
     padding:13px 24px;
     border-radius:999px;
     text-decoration:none;
@@ -168,107 +191,169 @@
   }
   .btn-primary{background:var(--accent);color:var(--accent-ink)}
   .btn-primary:hover{background:var(--accent-dark)}
-  .btn-outline-light{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.65);color:#fff}
-  .btn-outline-light:hover{background:rgba(255,255,255,.18)}
+  .btn-outline-light{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.6);color:#fff}
+  .btn-outline-light:hover{background:rgba(255,255,255,.16)}
   .btn-outline{background:transparent;border-color:var(--border);color:var(--fg)}
   .btn-outline:hover{background:var(--bg-alt)}
+  .btn-dark{background:var(--dark);color:var(--on-dark)}
+  .btn-dark:hover{background:var(--dark-2)}
 
   .hero-facts{
     display:flex;
     flex-wrap:wrap;
     gap:22px;
-    margin-top:30px;
+    margin-top:32px;
+    padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.18);
   }
   .hero-facts .fact{
     display:flex;
     align-items:center;
     gap:9px;
     color:#fff;
-    font-size:.92rem;
+    font-size:.9rem;
     font-weight:500;
   }
   .hero-facts svg{flex:0 0 auto;opacity:.85}
 
   /* sections */
-  section{padding-block:clamp(48px,7vw,80px)}
+  section{padding-block:clamp(52px,7vw,88px)}
   section.alt{background:var(--bg-alt)}
+  section.dark{background:var(--dark);color:var(--on-dark)}
+  section.dark h2{color:#fff}
   .section-head{margin-bottom:34px;max-width:70ch}
-  .section-head .eyebrow-sm{
-    display:block;
-    font-size:.78rem;
-    font-weight:700;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:8px;
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.3rem)}
+  .section-head .sub{color:var(--fg-dim);margin-top:10px;font-size:1.02rem}
+  section.dark .section-head .sub{color:var(--on-dark-dim)}
+  .section-head.center{margin-inline:auto;text-align:center}
+  .section-head.center .eyebrow-sm{justify-content:center}
+  .section-head.center .eyebrow-sm::before{display:none}
+
+  /* category strip */
+  .cat-strip{display:flex;gap:16px;overflow-x:auto;padding:4px 4px 14px;scroll-snap-type:x proximity}
+  .cat-card{
+    flex:0 0 auto;
+    width:170px;
+    scroll-snap-align:start;
+    appearance:none;
+    border:none;
+    background:none;
+    padding:0;
+    font:inherit;
+    color:inherit;
+    cursor:pointer;
+    text-align:center;
   }
-  .section-head h2{font-size:clamp(1.6rem,3.2vw,2.1rem)}
-  .section-head .sub{color:var(--fg-dim);margin-top:8px}
+  .cat-card .thumb{
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    aspect-ratio:3/4;
+  }
+  .cat-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+  .cat-card:hover img{transform:scale(1.07)}
+  .cat-card .cap{margin-top:12px;font-weight:700;font-size:.95rem}
+
+  .feature-video{
+    display:block;
+    width:100%;
+    max-width:880px;
+    margin-inline:auto;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    background:#000;
+  }
+
+  /* signature dishes */
+  .sig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
+  .sig-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+  }
+  .sig-photo{position:relative;aspect-ratio:4/3}
+  .sig-photo img{display:block;width:100%;height:100%;object-fit:cover}
+  .sig-badge{
+    position:absolute;
+    top:12px;left:12px;
+    font-size:.68rem;
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:5px 10px;
+    border-radius:999px;
+    background:rgba(16,12,8,.78);
+    color:#fff;
+  }
+  .sig-badge.veg{background:var(--veg)}
+  .sig-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .sig-name{font-size:1.08rem;font-weight:700}
+  .sig-desc{font-size:.88rem;color:var(--fg-dim);flex:1}
+  .sig-foot{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+  .sig-price{font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+  .sig-order{
+    font-size:.82rem;
+    font-weight:700;
+    text-decoration:none;
+    color:var(--fg);
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    border:1px solid var(--border);
+    padding:7px 13px;
+    border-radius:999px;
+  }
+  .sig-order:hover{border-color:var(--accent);color:var(--accent)}
 
   /* about */
   .about-grid{
     display:grid;
-    grid-template-columns:1.05fr .95fr;
-    gap:clamp(24px,5vw,48px);
-    align-items:start;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(28px,5vw,56px);
+    align-items:center;
   }
   .about-grid p + p{margin-top:14px}
-  .about-grid .lede{font-size:1.08rem}
-  .feature-cards{display:flex;flex-direction:column;gap:14px}
-  .feature-card{
-    background:#fff;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:18px 20px;
-    box-shadow:var(--shadow);
-    display:flex;
-    gap:14px;
-    align-items:flex-start;
-  }
-  .feature-card .icon{
-    flex:0 0 auto;
-    width:40px;height:40px;
-    border-radius:11px;
-    background:#fdece6;
-    color:var(--accent);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .feature-card h3{font-size:1rem;margin-bottom:3px}
-  .feature-card p{font-size:.88rem;color:var(--fg-dim)}
-
-  /* gallery */
-  .gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(235px,1fr));
-    gap:20px;
-  }
-  .gallery-item{
-    appearance:none;
-    border:1px solid var(--border);
-    background:#fff;
-    border-radius:16px;
-    padding:0;
-    overflow:hidden;
-    font:inherit;
-    color:inherit;
-    text-align:left;
-    cursor:pointer;
-    box-shadow:var(--shadow);
-    transition:transform .18s ease, box-shadow .18s ease;
-  }
-  .gallery-item:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(33,25,15,.06), 0 18px 32px -10px rgba(33,25,15,.22)}
-  .gallery-item .thumb{overflow:hidden}
-  .gallery-item img{
-    display:block;
-    width:100%;
-    aspect-ratio:4/3;
+  .about-grid .lede{font-size:1.1rem}
+  .about-photos{position:relative;padding-bottom:28px}
+  .about-photos img{border-radius:18px;box-shadow:var(--shadow);display:block}
+  .about-photos .ph-main{width:100%;aspect-ratio:4/3;object-fit:cover}
+  .about-photos .ph-float{
+    position:absolute;
+    width:46%;
+    aspect-ratio:1/1;
     object-fit:cover;
-    transition:transform .3s ease;
+    right:-4%;
+    bottom:0;
+    border:5px solid #fff;
   }
-  .gallery-item:hover img{transform:scale(1.06)}
-  .gallery-item figcaption{padding:13px 15px 15px}
-  .gallery-item .dish-cap{font-weight:700;font-size:.97rem}
-  .gallery-item .cat-cap{font-size:.8rem;color:var(--fg-dim);margin-top:2px}
+  .num-list{display:flex;flex-direction:column;gap:22px;margin-top:28px}
+  .num-item{display:flex;gap:16px}
+  .num-item .n{font-family:"Fraunces",serif;font-weight:600;color:var(--accent);font-size:1.3rem;flex:0 0 auto;width:2.2ch}
+  .num-item h3{font-size:1.02rem;margin-bottom:4px;font-family:"Fraunces",serif;font-weight:600}
+  .num-item p{font-size:.92rem;color:var(--fg-dim)}
+
+  /* reviews */
+  .review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .review-card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:16px;
+    padding:24px;
+    text-decoration:none;
+    color:var(--on-dark);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    transition:background .15s, border-color .15s;
+  }
+  .review-card:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.3)}
+  .review-card .platform{font-weight:700;font-size:1.02rem}
+  .review-card .desc{font-size:.86rem;color:var(--on-dark-dim)}
+  .review-card .go{font-size:.82rem;font-weight:700;color:#ff9c74;margin-top:auto}
 
   /* menu controls */
   .menu-controls{
@@ -305,18 +390,18 @@
     transition:background .15s,color .15s,border-color .15s;
   }
   .chip:hover{border-color:var(--accent);color:var(--fg)}
-  .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .chip[aria-pressed="true"]{background:var(--dark);border-color:var(--dark);color:#fff}
   .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.84rem;color:var(--fg-dim)}
   .legend span{display:inline-flex;align-items:center;gap:7px}
   .dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto}
   .dot.veg{background:var(--veg)}
-  .dot.nonveg{background:var(--nonveg)}
+  .dot.nonveg{background:var(--accent)}
 
   .menu-empty{display:none;padding:40px 0;color:var(--fg-dim);text-align:center}
 
   .menu-cat{margin-bottom:38px}
   .menu-cat-title{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
-  .menu-cat-title h3{font-size:1.25rem}
+  .menu-cat-title h3{font-size:1.3rem;font-family:"Fraunces",serif;font-weight:600}
   .menu-cat-title .count{font-size:.82rem;color:var(--fg-dim)}
   .menu-grid{
     display:grid;
@@ -337,16 +422,17 @@
   .dish-price{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);white-space:nowrap}
   .dish-desc{margin-top:7px;font-size:.86rem;color:var(--fg-dim)}
 
-  /* visit */
-  .visit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px}
+  /* visit + faq */
+  .visit-faq-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,56px);align-items:start}
   .visit-card{
     background:#fff;
     border:1px solid var(--border);
     border-radius:16px;
     padding:22px;
     box-shadow:var(--shadow);
+    margin-bottom:22px;
   }
-  .visit-card h3{font-size:1.05rem;margin-bottom:14px}
+  .visit-card h3{font-size:1.05rem;margin-bottom:14px;font-family:"Fraunces",serif;font-weight:600}
   table.hours{border-collapse:collapse;width:100%;font-size:.93rem}
   table.hours td{padding:7px 0;border-bottom:1px solid var(--border)}
   table.hours tr:last-child td{border-bottom:none}
@@ -366,26 +452,42 @@
   }
   .copy-btn:hover{color:var(--fg);border-color:var(--accent)}
   address{font-style:normal}
-  .visit-card img{width:100%;border-radius:12px;margin-bottom:16px;display:block}
+  .visit-card img{width:100%;border-radius:12px;margin-bottom:16px;display:block;aspect-ratio:16/10;object-fit:cover}
 
-  footer{background:var(--footer-bg);color:var(--footer-fg);padding-block:36px}
-  .footer-row{
+  .faq-item{border:1px solid var(--border);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+  .faq-item summary{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
-    flex-wrap:wrap;
-    font-size:.88rem;
+    justify-content:space-between;
+    gap:14px;
+    padding:16px 20px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:.98rem;
   }
-  .footer-row strong{font-family:"Plus Jakarta Sans",sans-serif;font-size:1.05rem}
-  .footer-row .muted{opacity:.65;font-size:.82rem}
-  .footer-brand{display:flex;align-items:center;gap:14px}
-  .footer-brand img{width:46px;height:46px;border-radius:10px;flex:0 0 auto}
+  .faq-item summary .plus{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--accent);transition:transform .2s}
+  .faq-item[open] summary .plus{transform:rotate(45deg)}
+  .faq-item .faq-a{padding:0 20px 18px;font-size:.92rem;color:var(--fg-dim)}
 
-  @media (max-width:760px){
+  footer{background:var(--dark-2);color:var(--on-dark);padding-block:48px 28px}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;padding-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .footer-brand{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .footer-brand img{width:44px;height:44px;border-radius:10px;flex:0 0 auto}
+  .footer-brand strong{font-family:"Fraunces",serif;font-size:1.15rem;font-weight:700}
+  .footer-col h4{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ff9c74;margin-bottom:14px}
+  .footer-col p, .footer-col a{display:block;font-size:.88rem;color:var(--on-dark-dim);text-decoration:none;margin-bottom:8px}
+  .footer-col a:hover{color:#fff}
+  table.hours.footer-hours td{border-bottom:1px solid rgba(255,255,255,.1);color:var(--on-dark-dim)}
+  table.hours.footer-hours td:first-child{color:var(--on-dark-dim)}
+  .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:22px;font-size:.8rem;color:var(--on-dark-dim)}
+
+  @media (max-width:800px){
     .about-grid{grid-template-columns:1fr}
+    .about-photos{order:-1}
+    .visit-faq-grid{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr;gap:26px}
     nav.links{display:none}
-    .hero{min-height:460px}
+    .hero{min-height:520px}
   }
 </style>
 </head>
@@ -399,9 +501,9 @@
     </a>
     <nav class="links" aria-label="Section navigation">
       <a href="#about">About</a>
-      <a href="#gallery">Gallery</a>
       <a href="#menu">Menu</a>
-      <a href="#visit">Hours &amp; Location</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit</a>
     </nav>
     <a class="nav-cta" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Online</a>
   </div>
@@ -410,12 +512,15 @@
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <span class="eyebrow">Harrisburg, Pennsylvania</span>
-      <h1>Authentic Nepali &amp; Indian Cuisine</h1>
+      <span class="pill-tag">Harrisburg, Pennsylvania</span>
+      <h1>A taste of <span class="accent-text">Nepal &amp; India</span><br>on your table</h1>
       <p class="tagline">Momo, thukpa and sekuwa from the Nepali side of the kitchen. Tandoor, kebabs and slow-cooked curries from the Indian side. All cooked to order.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="#fff" stroke-width="1.8"/></svg>Order Pickup</a>
         <a class="btn btn-primary" href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><path d="M3 15h12V8h-3M9 15V8H6L3 12v3h0" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10h4l3 5h-2" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>Order Delivery</a>
+        <a class="btn btn-primary" href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 3v7a3 3 0 0 0 6 0V3M6 3v4M9 3v4M12 3v4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><path d="M18 3c-2 2-2 5 0 8l-1 10h2l1-10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10v11" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>Order on Grubhub</a>
+      </div>
+      <div class="hero-actions secondary">
         <a class="btn btn-outline-light" href="#menu">View the Menu</a>
         <a class="btn btn-outline-light" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
       </div>
@@ -423,88 +528,146 @@
         <span class="fact"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 22s7-7.4 7-13a7 7 0 1 0-14 0c0 5.6 7 13 7 13Z" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="9" r="2.4" stroke="#fff" stroke-width="1.8"/></svg>1019 N Mountain Rd, Harrisburg, PA</span>
         <span class="fact"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5c0 8 7 15 15 15l2-4-5-3-2 2c-2-1-4-3-5-5l2-2-3-5-4 2Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>(717) 395-2942</span>
         <span class="fact" id="heroStatus"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>Checking hours&hellip;</span>
+        <a class="fact" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener" style="text-decoration:none"><svg width="17" height="17" viewBox="0 0 24 24" fill="#ffc94d"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.7 1.2 6.6L12 17.6l-5.9 3.2 1.2-6.6-4.8-4.7 6.6-.9L12 2.5z"/></svg>4.7 &middot; 138 Google reviews</a>
       </div>
     </div>
   </section>
 
-  <section id="about">
-    <div class="wrap about-grid">
-      <div>
-        <span class="eyebrow-sm">About Maya</span>
-        <h2>A family-run kitchen</h2>
-        <p class="lede" style="margin-top:14px">Welcome to Maya Asian Restaurant, a small, family-run business serving authentic Nepali and Indian cuisine in Harrisburg, PA.</p>
-        <p>From flavorful momos and delicious curries to freshly prepared traditional favorites, we bring the taste of home to your table. Every dish is made with care, passion, and a love for sharing good food.</p>
-        <p style="font-style:italic;color:var(--fg-dim)">Thank you for supporting our family business!</p>
-      </div>
-      <div class="feature-cards">
-        <div class="feature-card">
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 11a8 8 0 0 1 16 0v1H4v-1Z" stroke="currentColor" stroke-width="1.8"/><path d="M3 15h18v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2Z" stroke="currentColor" stroke-width="1.8"/></svg></div>
-          <div><h3>Himalayan staples</h3><p>Momo in four styles, thukpa noodle soup, and sekuwa grilled the traditional way.</p></div>
-        </div>
-        <div class="feature-card">
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M5 7l2 2M19 7l-2 2M4 13a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M3 17h18v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2Z" stroke="currentColor" stroke-width="1.8"/></svg></div>
-          <div><h3>Tandoor &amp; curry house</h3><p>Classic kadai, bhuna, korma and vindaloo, plus tandoori meats and fresh naan.</p></div>
-        </div>
-        <div class="feature-card">
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11Z" stroke="currentColor" stroke-width="1.8"/></svg></div>
-          <div><h3>Vegetarian-friendly</h3><p>Paneer, dal, aloo and vegetable versions run through nearly every section.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" class="alt">
+  <section id="menu" class="alt">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow-sm">Gallery</span>
-        <h2>From the kitchen</h2>
-        <p class="sub">A look at what actually lands on the table. Tap a photo to jump to that dish's menu section.</p>
+        <span class="eyebrow-sm">Explore the Menu</span>
+        <h2>What are you craving?</h2>
+        <p class="sub">Tap a section to jump straight to it in the full menu below.</p>
       </div>
-      <div class="gallery-grid">
-        <button class="gallery-item" type="button" data-cat="Appetizers &amp; Street Food">
-          <div class="thumb"><img src="images/samosa-chaat.jpg" alt="Samosa chaat topped with chutneys, yogurt, pomegranate and sev"></div>
-          <figcaption><div class="dish-cap">Samosa Chaat</div><div class="cat-cap">Appetizers &amp; Street Food</div></figcaption>
-        </button>
-        <button class="gallery-item" type="button" data-cat="Authentic Nepali Taste">
-          <div class="thumb"><img src="images/sukuti-sadheko.jpg" alt="Sukuti sadheko, dried meat tossed with tomato, onion and herbs, plated with cucumber, radish and carrot"></div>
-          <figcaption><div class="dish-cap">Sukuti Sadheko</div><div class="cat-cap">Authentic Nepali Taste</div></figcaption>
-        </button>
-        <button class="gallery-item" type="button" data-cat="Momo">
+      <div class="cat-strip">
+        <button class="cat-card" type="button" data-cat="Momo">
           <div class="thumb"><img src="images/momo-fried.jpg" alt="A plate of golden fried momo dumplings around a bowl of mustard-yellow dipping sauce"></div>
-          <figcaption><div class="dish-cap">Momo, Fried</div><div class="cat-cap">Momo</div></figcaption>
+          <div class="cap">Momo</div>
         </button>
-        <button class="gallery-item" type="button" data-cat="Thukpa">
-          <div class="thumb"><img src="images/thukpa.jpg" alt="A bowl of thukpa noodle soup in a golden turmeric broth, topped with fresh cilantro"></div>
-          <figcaption><div class="dish-cap">Thukpa</div><div class="cat-cap">Himalayan noodle soup</div></figcaption>
+        <button class="cat-card" type="button" data-cat="Authentic Nepali Taste">
+          <div class="thumb"><img src="images/sukuti-sadheko.jpg" alt="Sukuti sadheko, dried meat tossed with tomato, onion and herbs"></div>
+          <div class="cap">Nepali Taste</div>
         </button>
-        <button class="gallery-item" type="button" data-cat="Sekuwa">
+        <button class="cat-card" type="button" data-cat="Thukpa">
+          <div class="thumb"><img src="images/thukpa.jpg" alt="A bowl of thukpa noodle soup in a golden turmeric broth"></div>
+          <div class="cap">Thukpa</div>
+        </button>
+        <button class="cat-card" type="button" data-cat="Sekuwa">
           <div class="thumb"><img src="images/sekuwa.jpg" alt="Grilled sekuwa skewer meat plated with cucumber, carrot and radish" style="object-position:50% 70%"></div>
-          <figcaption><div class="dish-cap">Sekuwa</div><div class="cat-cap">Grilled Nepali skewers</div></figcaption>
+          <div class="cap">Sekuwa</div>
         </button>
-        <button class="gallery-item" type="button" data-cat="Chowmein">
-          <div class="thumb"><img src="images/chowmein.jpg" alt="A plate of stir-fried chowmein noodles with vegetables and cilantro"></div>
-          <figcaption><div class="dish-cap">Chowmein</div><div class="cat-cap">Indo-Chinese noodles</div></figcaption>
-        </button>
-        <button class="gallery-item" type="button" data-cat="Classic Curries">
+        <button class="cat-card" type="button" data-cat="Classic Curries">
           <div class="thumb"><img src="images/butter-chicken.jpg" alt="A bowl of creamy orange butter chicken curry swirled with cream"></div>
-          <figcaption><div class="dish-cap">Butter Chicken</div><div class="cat-cap">Classic Curries</div></figcaption>
+          <div class="cap">Curries</div>
         </button>
-        <button class="gallery-item" type="button" data-cat="Wrap">
+        <button class="cat-card" type="button" data-cat="Chowmein">
+          <div class="thumb"><img src="images/chowmein.jpg" alt="A plate of stir-fried chowmein noodles with vegetables and cilantro"></div>
+          <div class="cap">Chowmein</div>
+        </button>
+        <button class="cat-card" type="button" data-cat="Wrap">
           <div class="thumb"><img src="images/chicken-tikka-wrap.jpg" alt="A chicken tikka wrap sliced in half, served with waffle fries"></div>
-          <figcaption><div class="dish-cap">Chicken Tikka Wrap</div><div class="cat-cap">Wrap</div></figcaption>
+          <div class="cap">Wraps</div>
         </button>
-        <button class="gallery-item" type="button" data-cat="Naan &amp; Breads">
+        <button class="cat-card" type="button" data-cat="Naan & Breads">
           <div class="thumb"><img src="images/garlic-naan.jpg" alt="Triangles of garlic butter naan topped with cilantro"></div>
-          <figcaption><div class="dish-cap">Garlic Butter Naan</div><div class="cat-cap">Naan &amp; Breads</div></figcaption>
+          <div class="cap">Naan &amp; Breads</div>
         </button>
       </div>
     </div>
   </section>
 
-  <section id="menu">
+  <section id="video">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow-sm">Take a Look</span>
+        <h2>See Maya from the inside</h2>
+      </div>
+      <video class="feature-video" src="videos/restaurant.mp4" controls playsinline preload="metadata" poster="images/storefront.jpg"></video>
+    </div>
+  </section>
+
+  <section id="signature" class="alt">
     <div class="wrap">
       <div class="section-head">
-        <h2>Menu</h2>
+        <span class="eyebrow-sm">Most Loved at Maya</span>
+        <h2>Signature plates, ready to order</h2>
+        <p class="sub">A few guest favourites from across the Nepali and Indian sides of the kitchen.</p>
+      </div>
+      <div class="sig-grid">
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/samosa-chaat.jpg" alt="Samosa chaat topped with chutneys, yogurt, pomegranate and sev"><span class="sig-badge veg">Vegetarian</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Samosa Chaat</div>
+            <p class="sig-desc">Crispy samosas topped with chickpea curry, creamy yogurt, tangy chutneys, and aromatic Indian spices.</p>
+            <div class="sig-foot"><span class="sig-price">$9.99</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/sukuti-sadheko.jpg" alt="Sukuti sadheko, dried meat tossed with tomato, onion and herbs"><span class="sig-badge">Nepali</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Sukuti Sadheko</div>
+            <p class="sig-desc">Traditional Nepali dried meat tossed with onions, green chilies, fresh cilantro, lemon juice, and aromatic Nepali spices.</p>
+            <div class="sig-foot"><span class="sig-price">$12.99</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/momo-fried.jpg" alt="A plate of golden fried momo dumplings around a bowl of mustard-yellow dipping sauce"><span class="sig-badge">Momo</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Momo, Fried</div>
+            <p class="sig-desc">Crispy golden-fried dumplings filled with your choice of chicken, pork or vegetables. Served with our special dipping sauce.</p>
+            <div class="sig-foot"><span class="sig-price">From $10.99</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/thukpa.jpg" alt="A bowl of thukpa noodle soup in a golden turmeric broth"><span class="sig-badge">Noodle Soup</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Thukpa</div>
+            <p class="sig-desc">A comforting Himalayan noodle soup in a warm, aromatic broth &mdash; vegetable, egg, chicken, pork, lamb or shrimp.</p>
+            <div class="sig-foot"><span class="sig-price">From $11.99</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/sekuwa.jpg" alt="Grilled sekuwa skewer meat plated with cucumber, carrot and radish" style="object-position:50% 70%"><span class="sig-badge">Grilled</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Sekuwa</div>
+            <p class="sig-desc">Marinated in traditional Nepali spices and grilled to a smoky, juicy finish &mdash; chicken, pork, mutton or goat.</p>
+            <div class="sig-foot"><span class="sig-price">From $13.99</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/butter-chicken.jpg" alt="A bowl of creamy orange butter chicken curry swirled with cream"><span class="sig-badge">Curry</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Butter Chicken</div>
+            <p class="sig-desc">Tender chicken cooked in a rich, creamy tomato-based sauce with butter and aromatic Indian spices. Served with rice.</p>
+            <div class="sig-foot"><span class="sig-price">$14.99</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/chicken-tikka-wrap.jpg" alt="A chicken tikka wrap sliced in half, served with waffle fries"><span class="sig-badge">Wrap</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Chicken Tikka Wrap</div>
+            <p class="sig-desc">Tender, marinated chicken tikka grilled with aromatic Indian spices, wrapped in soft naan with fresh vegetables and sauce.</p>
+            <div class="sig-foot"><span class="sig-price">$12.99</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+        <div class="sig-card">
+          <div class="sig-photo"><img src="images/garlic-naan.jpg" alt="Triangles of garlic butter naan topped with cilantro"><span class="sig-badge veg">Vegetarian</span></div>
+          <div class="sig-body">
+            <div class="sig-name">Garlic Butter Naan</div>
+            <p class="sig-desc">Soft naan freshly baked in a traditional tandoor oven, topped with minced garlic, fresh cilantro, and melted butter.</p>
+            <div class="sig-foot"><span class="sig-price">$3.49</span><a class="sig-order" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order &rarr;</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu-full">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow-sm">Full Menu</span>
+        <h2>Browse every section</h2>
         <p class="sub">From street-food appetizers to slow-cooked curries. Filter by section or search for a dish.</p>
       </div>
 
@@ -524,47 +687,128 @@
     </div>
   </section>
 
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow-sm">Why Maya</span>
+        <h2><span style="color:var(--accent)">Maya</span>, where every guest feels at home</h2>
+        <p class="lede" style="margin-top:14px">Welcome to Maya Asian Restaurant, a small, family-run business serving authentic Nepali and Indian cuisine in Harrisburg, PA.</p>
+        <p>From flavorful momos and delicious curries to freshly prepared traditional favorites, we bring the taste of home to your table. Every dish is made with care, passion, and a love for sharing good food.</p>
+        <p style="font-style:italic;color:var(--fg-dim)">Thank you for supporting our family business!</p>
+        <div class="num-list">
+          <div class="num-item">
+            <span class="n">01</span>
+            <div><h3>Himalayan staples</h3><p>Momo in four styles, thukpa noodle soup, and sekuwa grilled the traditional way.</p></div>
+          </div>
+          <div class="num-item">
+            <span class="n">02</span>
+            <div><h3>Tandoor &amp; curry house</h3><p>Classic kadai, bhuna, korma and vindaloo, plus tandoori meats and fresh naan.</p></div>
+          </div>
+          <div class="num-item">
+            <span class="n">03</span>
+            <div><h3>Vegetarian-friendly</h3><p>Paneer, dal, aloo and vegetable versions run through nearly every section.</p></div>
+          </div>
+        </div>
+        <div style="margin-top:26px"><a class="btn btn-dark" href="#menu-full">View the full menu &rarr;</a></div>
+      </div>
+      <div class="about-photos">
+        <img class="ph-main" src="images/storefront.jpg" alt="Maya Asian Restaurant storefront in a Harrisburg strip plaza, with neon OPEN signs in the windows">
+        <img class="ph-float" src="images/butter-chicken.jpg" alt="A bowl of creamy butter chicken curry">
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="dark">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow-sm on-dark">Loved by our guests</span>
+        <h2>4.7 stars, 138 Google reviews</h2>
+        <p class="sub">See what people are saying about Maya on Google, Yelp and Grubhub.</p>
+      </div>
+      <div class="review-grid">
+        <a class="review-card" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">
+          <span class="platform">Google &middot; 4.7 &#9733;</span>
+          <span class="desc">138 Google reviews and counting.</span>
+          <span class="go">Read reviews &rarr;</span>
+        </a>
+        <a class="review-card" href="https://www.yelp.com/search?find_desc=Maya+Asian+Restaurant&find_loc=Harrisburg%2C+PA" target="_blank" rel="noopener">
+          <span class="platform">Yelp</span>
+          <span class="desc">Find Maya Asian Restaurant on Yelp.</span>
+          <span class="go">Read reviews &rarr;</span>
+        </a>
+        <a class="review-card" href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener">
+          <span class="platform">Grubhub</span>
+          <span class="desc">Order online and see guest ratings on Grubhub.</span>
+          <span class="go">Order &amp; review &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="visit" class="alt">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow-sm">Visit</span>
-        <h2>Hours &amp; location</h2>
+        <h2>Come say namaste</h2>
         <p class="sub">Open six days a week in Harrisburg. Closed Mondays.</p>
       </div>
-      <div class="visit-grid">
-        <div class="visit-card">
-          <h3>Hours</h3>
-          <table class="hours" id="hoursTable">
-            <tbody>
-              <tr data-day="0"><td>Sunday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
-              <tr data-day="1"><td>Monday</td><td>Closed</td></tr>
-              <tr data-day="2"><td>Tuesday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
-              <tr data-day="3"><td>Wednesday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
-              <tr data-day="4"><td>Thursday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
-              <tr data-day="5"><td>Friday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
-              <tr data-day="6"><td>Saturday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
-            </tbody>
-          </table>
-          <p class="sub" style="margin-top:10px;font-size:.78rem">All times Eastern.</p>
-        </div>
-        <div class="visit-card">
-          <h3>Find us</h3>
-          <img src="images/storefront.jpg" alt="Maya Asian Restaurant storefront in a Harrisburg strip plaza, with neon OPEN signs in the windows">
-          <address>1019 North Mountain Road<br>Harrisburg, PA 17112</address>
-          <div class="copy-row">
-            <button class="copy-btn" data-copy="1019 North Mountain Road, Harrisburg, PA 17112">Copy address</button>
+      <div class="visit-faq-grid">
+        <div>
+          <div class="visit-card">
+            <h3>Hours</h3>
+            <table class="hours" id="hoursTable">
+              <tbody>
+                <tr data-day="0"><td>Sunday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+                <tr data-day="1"><td>Monday</td><td>Closed</td></tr>
+                <tr data-day="2"><td>Tuesday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+                <tr data-day="3"><td>Wednesday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+                <tr data-day="4"><td>Thursday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+                <tr data-day="5"><td>Friday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+                <tr data-day="6"><td>Saturday</td><td>11:00 AM &ndash; 9:00 PM</td></tr>
+              </tbody>
+            </table>
+            <p class="sub" style="margin-top:10px;font-size:.78rem">All times Eastern.</p>
           </div>
-          <div style="margin-top:18px">
-            <div style="font-weight:700">(717) 395-2942</div>
+          <div class="visit-card">
+            <h3>Find us</h3>
+            <img src="images/storefront.jpg" alt="Maya Asian Restaurant storefront in a Harrisburg strip plaza, with neon OPEN signs in the windows">
+            <address>1019 North Mountain Road<br>Harrisburg, PA 17112</address>
             <div class="copy-row">
-              <button class="copy-btn" data-copy="+17173952942">Copy phone number</button>
+              <button class="copy-btn" data-copy="1019 North Mountain Road, Harrisburg, PA 17112">Copy address</button>
+            </div>
+            <div style="margin-top:18px">
+              <div style="font-weight:700">(717) 395-2942</div>
+              <div class="copy-row">
+                <button class="copy-btn" data-copy="+17173952942">Copy phone number</button>
+              </div>
+            </div>
+            <div class="hero-actions" style="margin-top:22px">
+              <a class="btn btn-outline" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Pickup</a>
+              <a class="btn btn-outline" href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener">Order Delivery</a>
+              <a class="btn btn-outline" href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener">Order on Grubhub</a>
+              <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
             </div>
           </div>
-          <div class="hero-actions" style="margin-top:22px">
-            <a class="btn btn-outline" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Pickup</a>
-            <a class="btn btn-outline" href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener">Order Delivery</a>
-            <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
-          </div>
+        </div>
+        <div>
+          <span class="eyebrow-sm">Good to know</span>
+          <h2 style="font-size:1.5rem;margin-bottom:18px">Questions, answered</h2>
+          <details class="faq-item">
+            <summary>Do you have vegetarian options?<span class="plus">+</span></summary>
+            <p class="faq-a">Yes &mdash; look for the green dot next to a dish in our menu. Vegetable momo, paneer dishes, dal tadka and more run through nearly every section.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can dishes be made more or less spicy?<span class="plus">+</span></summary>
+            <p class="faq-a">Spice levels vary by dish &mdash; let us know if you'd like something milder or spicier when you order.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you offer pickup and delivery?<span class="plus">+</span></summary>
+            <p class="faq-a">Yes. Order pickup directly through our online menu, or get it delivered through DoorDash or Grubhub.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is Maya Asian Restaurant family-owned?<span class="plus">+</span></summary>
+            <p class="faq-a">Yes &mdash; Maya is a small, family-run restaurant serving Harrisburg. Every dish is made to order.</p>
+          </details>
         </div>
       </div>
     </div>
@@ -572,12 +816,37 @@
 </main>
 
 <footer>
-  <div class="wrap footer-row">
-    <div class="footer-brand">
-      <img src="images/logo-icon.jpg" alt="Maya Asian Restaurant logo">
-      <div><strong>Maya Asian Restaurant</strong><br><span class="muted">1019 North Mountain Road, Harrisburg, PA 17112 &middot; (717) 395-2942</span></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="images/logo-icon.jpg" alt="Maya Asian Restaurant logo">
+          <strong>Maya Asian Restaurant</strong>
+        </div>
+        <p style="color:var(--on-dark-dim);font-size:.88rem;max-width:34ch">A small, family-run business serving authentic Nepali &amp; Indian cuisine in Harrisburg, PA. Thank you for your support!</p>
+      </div>
+      <div class="footer-col">
+        <h4>Working Hours</h4>
+        <table class="hours footer-hours">
+          <tbody>
+            <tr><td>Mon</td><td>Closed</td></tr>
+            <tr><td>Tue &ndash; Sun</td><td>11 AM &ndash; 9 PM</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <p>1019 North Mountain Road<br>Harrisburg, PA 17112</p>
+        <a href="tel:+17173952942">(717) 395-2942</a>
+        <a href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Pickup</a>
+        <a href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener">Order Delivery</a>
+        <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener">Order on Grubhub</a>
+      </div>
     </div>
-    <span class="muted">A small, family-run business &mdash; thank you for your support</span>
+    <div class="footer-bottom">
+      <span>&copy; Maya Asian Restaurant. All rights reserved.</span>
+      <span>Delivery available across the Harrisburg area via DoorDash and Grubhub.</span>
+    </div>
   </div>
 </footer>
 
@@ -892,12 +1161,12 @@
     document.body.removeChild(ta);
   }
 
-  // gallery: jump to a dish's menu section
-  Array.prototype.forEach.call(document.querySelectorAll(".gallery-item"), function(btn){
+  // category strip: jump to a dish's menu section
+  Array.prototype.forEach.call(document.querySelectorAll(".cat-card"), function(btn){
     btn.addEventListener("click", function(){
       searchEl.value = "";
       setActive(btn.dataset.cat);
-      var target = document.getElementById("menu");
+      var target = document.getElementById("menu-full");
       if (target) target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
     });
   });
