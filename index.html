@@ -470,6 +470,26 @@
   .dish-price{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);white-space:nowrap}
   .dish-desc{margin-top:7px;font-size:.86rem;color:var(--fg-dim)}
 
+  /* catering */
+  .catering-panel{
+    max-width:640px;
+    margin-inline:auto;
+    text-align:center;
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:clamp(32px,6vw,52px) clamp(24px,6vw,48px);
+  }
+  .catering-icon{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:#fdece6;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 18px;
+  }
+  .catering-panel h2{font-size:clamp(1.5rem,3vw,2rem)}
+  .catering-panel .sub{margin-top:12px;margin-bottom:26px;color:var(--fg-dim)}
+
   /* visit + faq */
   .visit-faq-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,56px);align-items:start}
   .visit-card{
@@ -552,7 +572,7 @@
       <a href="#menu">Menu</a>
       <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
-      <a href="tel:+17173952942">Catering</a>
+      <a href="#catering">Catering</a>
     </nav>
     <a class="nav-cta" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Online</a>
   </div>
@@ -573,6 +593,7 @@
             <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><span class="brand-badge grubhub">G</span> Grubhub</a>
           </div>
         </details>
+        <a class="btn btn-outline-light" href="#catering"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 21v-5a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="3.2" stroke="#fff" stroke-width="1.8"/></svg>Catering</a>
       </div>
       <div class="hero-actions secondary">
         <a class="btn btn-outline-light" href="#menu">View the Menu</a>
@@ -799,6 +820,18 @@
     </div>
   </section>
 
+  <section id="catering">
+    <div class="wrap">
+      <div class="catering-panel">
+        <div class="catering-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M4 21v-5a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v5" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="3.2" stroke="var(--accent)" stroke-width="1.8"/></svg></div>
+        <span class="eyebrow-sm" style="justify-content:center">Catering</span>
+        <h2>Feeding a crowd?</h2>
+        <p class="sub">From office lunches to family gatherings and parties, Maya can cater your next event with the same Nepali and Indian dishes you love. Give us a call to talk through your menu, headcount and timing.</p>
+        <a class="btn btn-primary" href="tel:+17173952942"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 5c0 8 7 15 15 15l2-4-5-3-2 2c-2-1-4-3-5-5l2-2-3-5-4 2Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>Call (717) 395-2942</a>
+      </div>
+    </div>
+  </section>
+
   <section id="visit" class="alt">
     <div class="wrap">
       <div class="section-head">
@@ -846,7 +879,6 @@
                 </div>
               </details>
               <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
-              <a class="btn btn-outline" href="tel:+17173952942">Catering &mdash; Call Us</a>
             </div>
           </div>
         </div>
@@ -868,10 +900,6 @@
           <details class="faq-item">
             <summary>Is Maya Asian Restaurant family-owned?<span class="plus">+</span></summary>
             <p class="faq-a">Yes &mdash; Maya is a small, family-run restaurant serving Harrisburg. Every dish is made to order.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Do you offer catering?<span class="plus">+</span></summary>
-            <p class="faq-a">Yes &mdash; call us at <a href="tel:+17173952942" style="color:var(--accent);font-weight:700">(717) 395-2942</a> to discuss catering for your event.</p>
           </details>
         </div>
       </div>
