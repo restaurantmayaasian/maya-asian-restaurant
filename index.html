@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Maya Asian Restaurant</title>
 <meta name="description" content="Authentic Nepali & Indian cuisine in Harrisburg, PA. View the menu, order pickup or delivery, and find our hours and location.">
-<link rel="icon" href="images/logo-icon.jpg">
+<link rel="icon" href="images/logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -197,6 +197,54 @@
   .btn-outline:hover{background:var(--bg-alt)}
   .btn-dark{background:var(--dark);color:var(--on-dark)}
   .btn-dark:hover{background:var(--dark-2)}
+
+  /* delivery dropdown */
+  .order-dropdown{position:relative;display:inline-block}
+  .order-dropdown > summary{cursor:pointer}
+  .order-dropdown .caret{transition:transform .15s ease}
+  .order-dropdown[open] .caret{transform:rotate(180deg)}
+  .order-dropdown[open] > summary{background:var(--accent-dark)}
+  .order-dropdown.btn-outline[open] > summary,
+  .order-dropdown.btn-outline-light[open] > summary{background:var(--bg-alt);color:var(--fg)}
+  .dropdown-menu{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:0;
+    min-width:230px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:0 2px 4px rgba(33,20,10,.06), 0 20px 40px -12px rgba(33,20,10,.3);
+    padding:8px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    z-index:50;
+  }
+  .dropdown-menu a{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:10px 12px;
+    border-radius:10px;
+    text-decoration:none;
+    color:var(--fg);
+    font-weight:700;
+    font-size:.92rem;
+  }
+  .dropdown-menu a:hover{background:var(--bg-alt)}
+  .brand-badge{
+    width:28px;height:28px;
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+    font-weight:800;
+    font-size:.82rem;
+    flex:0 0 auto;
+    font-family:"Inter",sans-serif;
+  }
+  .brand-badge.doordash{background:#FF3008}
+  .brand-badge.grubhub{background:#F63440}
 
   .hero-facts{
     display:flex;
@@ -496,7 +544,7 @@
 <header>
   <div class="wrap nav-row">
     <a class="brand" href="#top">
-      <img src="images/logo-icon.jpg" alt="Maya Asian Restaurant logo">
+      <img src="images/logo-icon.png" alt="Maya Asian Restaurant logo">
       Maya Asian Restaurant
     </a>
     <nav class="links" aria-label="Section navigation">
@@ -517,8 +565,13 @@
       <p class="tagline">Momo, thukpa and sekuwa from the Nepali side of the kitchen. Tandoor, kebabs and slow-cooked curries from the Indian side. All cooked to order.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="#fff" stroke-width="1.8"/></svg>Order Pickup</a>
-        <a class="btn btn-primary" href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><path d="M3 15h12V8h-3M9 15V8H6L3 12v3h0" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10h4l3 5h-2" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>Order Delivery</a>
-        <a class="btn btn-primary" href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M6 3v7a3 3 0 0 0 6 0V3M6 3v4M9 3v4M12 3v4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><path d="M18 3c-2 2-2 5 0 8l-1 10h2l1-10" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10v11" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>Order on Grubhub</a>
+        <details class="order-dropdown">
+          <summary class="btn btn-primary"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><path d="M3 15h12V8h-3M9 15V8H6L3 12v3h0" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10h4l3 5h-2" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>Order Delivery<svg class="caret" width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <div class="dropdown-menu">
+            <a href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><span class="brand-badge doordash">D</span> DoorDash</a>
+            <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><span class="brand-badge grubhub">G</span> Grubhub</a>
+          </div>
+        </details>
       </div>
       <div class="hero-actions secondary">
         <a class="btn btn-outline-light" href="#menu">View the Menu</a>
@@ -784,8 +837,13 @@
             </div>
             <div class="hero-actions" style="margin-top:22px">
               <a class="btn btn-outline" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Pickup</a>
-              <a class="btn btn-outline" href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener">Order Delivery</a>
-              <a class="btn btn-outline" href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener">Order on Grubhub</a>
+              <details class="order-dropdown btn-outline">
+                <summary class="btn btn-outline">Order Delivery<svg class="caret" width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+                <div class="dropdown-menu">
+                  <a href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><span class="brand-badge doordash">D</span> DoorDash</a>
+                  <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><span class="brand-badge grubhub">G</span> Grubhub</a>
+                </div>
+              </details>
               <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
             </div>
           </div>
@@ -820,7 +878,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand">
-          <img src="images/logo-icon.jpg" alt="Maya Asian Restaurant logo">
+          <img src="images/logo-icon.png" alt="Maya Asian Restaurant logo">
           <strong>Maya Asian Restaurant</strong>
         </div>
         <p style="color:var(--on-dark-dim);font-size:.88rem;max-width:34ch">A small, family-run business serving authentic Nepali &amp; Indian cuisine in Harrisburg, PA. Thank you for your support!</p>
@@ -1180,6 +1238,19 @@
         e.preventDefault();
         target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
       }
+    });
+  });
+
+  // order-delivery dropdowns: close on outside click, close others on open
+  var dropdowns = Array.prototype.slice.call(document.querySelectorAll(".order-dropdown"));
+  dropdowns.forEach(function(d){
+    d.addEventListener("toggle", function(){
+      if (d.open) dropdowns.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+  document.addEventListener("click", function(e){
+    dropdowns.forEach(function(d){
+      if (d.open && !d.contains(e.target)) d.open = false;
     });
   });
 })();
