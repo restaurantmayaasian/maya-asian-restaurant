@@ -742,19 +742,25 @@
         <p class="sub">From street-food appetizers to slow-cooked curries. Filter by section or search for a dish.</p>
       </div>
 
-      <div class="menu-controls">
-        <div class="search-row">
-          <input type="search" id="menuSearch" placeholder="Search the menu &mdash; try &ldquo;momo&rdquo; or &ldquo;paneer&rdquo;" aria-label="Search the menu">
-        </div>
-        <div class="chips" id="chipRow" role="tablist" aria-label="Menu sections"></div>
-        <div class="legend">
-          <span><i class="dot veg" aria-hidden="true"></i> Vegetarian</span>
-          <span><i class="dot nonveg" aria-hidden="true"></i> Contains meat or seafood</span>
-        </div>
+      <div id="menuFullToggleWrap" style="text-align:center">
+        <button type="button" id="menuFullToggleBtn" class="btn btn-dark">View Full Menu</button>
       </div>
 
-      <div id="menuList"></div>
-      <p class="menu-empty" id="menuEmpty">No dishes match that search.</p>
+      <div id="menuFullBody" hidden>
+        <div class="menu-controls">
+          <div class="search-row">
+            <input type="search" id="menuSearch" placeholder="Search the menu &mdash; try &ldquo;momo&rdquo; or &ldquo;paneer&rdquo;" aria-label="Search the menu">
+          </div>
+          <div class="chips" id="chipRow" role="tablist" aria-label="Menu sections"></div>
+          <div class="legend">
+            <span><i class="dot veg" aria-hidden="true"></i> Vegetarian</span>
+            <span><i class="dot nonveg" aria-hidden="true"></i> Contains meat or seafood</span>
+          </div>
+        </div>
+
+        <div id="menuList"></div>
+        <p class="menu-empty" id="menuEmpty">No dishes match that search.</p>
+      </div>
     </div>
   </section>
 
@@ -1249,11 +1255,28 @@
     document.body.removeChild(ta);
   }
 
+  // full menu: hidden by default, shown on demand
+  var menuFullBody = document.getElementById("menuFullBody");
+  var menuFullToggleBtn = document.getElementById("menuFullToggleBtn");
+  function openFullMenu(){
+    menuFullBody.hidden = false;
+    menuFullToggleBtn.textContent = "Hide Full Menu";
+  }
+  menuFullToggleBtn.addEventListener("click", function(){
+    if (menuFullBody.hidden) {
+      openFullMenu();
+    } else {
+      menuFullBody.hidden = true;
+      menuFullToggleBtn.textContent = "View Full Menu";
+    }
+  });
+
   // category strip: jump to a dish's menu section
   Array.prototype.forEach.call(document.querySelectorAll(".cat-card"), function(btn){
     btn.addEventListener("click", function(){
       searchEl.value = "";
       setActive(btn.dataset.cat);
+      openFullMenu();
       var target = document.getElementById("menu-full");
       if (target) target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
     });
@@ -1266,6 +1289,7 @@
       var target = document.getElementById(id);
       if (target){
         e.preventDefault();
+        if (id === "menu-full") openFullMenu();
         target.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"});
       }
     });
