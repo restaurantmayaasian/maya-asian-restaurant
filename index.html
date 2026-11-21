@@ -204,9 +204,9 @@
   .order-dropdown .caret{transition:transform .15s ease}
   .order-dropdown[open] .caret{transform:rotate(180deg)}
   .order-dropdown[open] > summary{background:var(--accent-dark)}
-  .order-dropdown.btn-outline[open] > summary,
-  .order-dropdown.btn-outline-light[open] > summary{background:var(--bg-alt);color:var(--fg)}
+  .order-dropdown.dd-outline[open] > summary{background:var(--bg-alt);color:var(--fg)}
   .dropdown-menu{
+    content-visibility:visible;
     position:absolute;
     top:calc(100% + 10px);
     left:0;
@@ -501,19 +501,6 @@
   table.hours tr:last-child td{border-bottom:none}
   table.hours td:first-child{color:var(--fg-dim);width:45%}
   table.hours tr.today td{color:var(--accent);font-weight:700}
-  .copy-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
-  .copy-btn{
-    font:inherit;
-    font-size:.78rem;
-    font-weight:600;
-    padding:6px 12px;
-    border-radius:999px;
-    border:1px solid var(--border);
-    background:var(--bg-alt);
-    color:var(--fg-dim);
-    cursor:pointer;
-  }
-  .copy-btn:hover{color:var(--fg);border-color:var(--accent)}
   address{font-style:normal}
   .visit-card img{width:100%;border-radius:12px;margin-bottom:16px;display:block;aspect-ratio:16/10;object-fit:cover}
   .visit-card .map-embed{width:100%;border:0;border-radius:12px;margin-bottom:16px;display:block;aspect-ratio:16/10}
@@ -585,8 +572,8 @@
         <details class="order-dropdown">
           <summary class="btn btn-primary"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="19" r="2" stroke="#fff" stroke-width="1.8"/><path d="M3 15h12V8h-3M9 15V8H6L3 12v3h0" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 10h4l3 5h-2" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>Order Delivery<svg class="caret" width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
           <div class="dropdown-menu">
-            <a href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><img class="brand-badge" src="images/doordash-logo.png" alt="DoorDash"> DoorDash</a>
-            <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><img class="brand-badge" src="images/grubhub-logo.png" alt="Grubhub"> Grubhub</a>
+            <a href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><svg class="brand-badge" width="28" height="28" viewBox="0 0 32 32" role="img" aria-label="DoorDash"><circle cx="16" cy="16" r="16" fill="#FF3008"/><path d="M12 9l8 7-8 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> DoorDash</a>
+            <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><svg class="brand-badge" width="28" height="28" viewBox="0 0 32 32" role="img" aria-label="Grubhub"><rect width="32" height="32" rx="7" fill="#F63440"/><text x="16" y="21" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="13" fill="#fff" text-anchor="middle">GH</text></svg> Grubhub</a>
           </div>
         </details>
         <a class="btn btn-primary" href="#catering"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 21v-5a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="3.2" stroke="#fff" stroke-width="1.8"/></svg>Catering</a>
@@ -862,22 +849,16 @@
             <h3>Find us</h3>
             <iframe class="map-embed" src="https://www.google.com/maps?q=1019+North+Mountain+Road,+Harrisburg,+PA+17112&output=embed" title="Map showing Maya Asian Restaurant at 1019 North Mountain Road, Harrisburg, PA" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <address>1019 North Mountain Road<br>Harrisburg, PA 17112</address>
-            <div class="copy-row">
-              <button class="copy-btn" data-copy="1019 North Mountain Road, Harrisburg, PA 17112">Copy address</button>
-            </div>
             <div style="margin-top:18px">
-              <div style="font-weight:700">(717) 395-2942</div>
-              <div class="copy-row">
-                <button class="copy-btn" data-copy="+17173952942">Copy phone number</button>
-              </div>
+              <a href="tel:+17173952942" style="font-weight:700;font-size:1.05rem;color:var(--accent);text-decoration:none">(717) 395-2942</a>
             </div>
             <div class="hero-actions" style="margin-top:22px">
               <a class="btn btn-outline" href="https://maya-asian-restaurant-harrisburg.cloveronline.com/menu/all" target="_blank" rel="noopener">Order Pickup</a>
-              <details class="order-dropdown btn-outline">
+              <details class="order-dropdown dd-outline">
                 <summary class="btn btn-outline">Order Delivery<svg class="caret" width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
                 <div class="dropdown-menu">
-                  <a href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><img class="brand-badge" src="images/doordash-logo.png" alt="DoorDash"> DoorDash</a>
-                  <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><img class="brand-badge" src="images/grubhub-logo.png" alt="Grubhub"> Grubhub</a>
+                  <a href="https://www.doordash.com/store/maya-asian-restaurant-harrisburg-53024333/" target="_blank" rel="noopener"><svg class="brand-badge" width="28" height="28" viewBox="0 0 32 32" role="img" aria-label="DoorDash"><circle cx="16" cy="16" r="16" fill="#FF3008"/><path d="M12 9l8 7-8 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg> DoorDash</a>
+                  <a href="https://www.grubhub.com/restaurant/maya-asian-restaurant-1019-n-mountain-rd-harrisburg/16207560" target="_blank" rel="noopener"><svg class="brand-badge" width="28" height="28" viewBox="0 0 32 32" role="img" aria-label="Grubhub"><rect width="32" height="32" rx="7" fill="#F63440"/><text x="16" y="21" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="13" fill="#fff" text-anchor="middle">GH</text></svg> Grubhub</a>
                 </div>
               </details>
               <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Maya+Asian+Restaurant+1019+North+Mountain+Road+Harrisburg+PA+17112" target="_blank" rel="noopener">Get Directions</a>
@@ -1225,35 +1206,6 @@
     }
   }
   updateStatus();
-
-  // copy buttons
-  Array.prototype.forEach.call(document.querySelectorAll(".copy-btn"), function(btn){
-    btn.addEventListener("click", function(){
-      var val = btn.dataset.copy;
-      var done = function(){
-        var old = btn.textContent;
-        btn.textContent = "Copied";
-        setTimeout(function(){ btn.textContent = old; }, 1500);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(val).then(done, function(){
-          fallbackCopy(val); done();
-        });
-      } else {
-        fallbackCopy(val); done();
-      }
-    });
-  });
-  function fallbackCopy(val){
-    var ta = document.createElement("textarea");
-    ta.value = val;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand("copy"); } catch(e){}
-    document.body.removeChild(ta);
-  }
 
   // full menu: hidden by default, shown on demand
   var menuFullBody = document.getElementById("menuFullBody");
